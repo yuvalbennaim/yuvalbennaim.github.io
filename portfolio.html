@@ -1,0 +1,20 @@
+<div ng-controller="PortfolioCtrl" ng-init="init()">
+
+	<div class="header">
+    Contents of: {{dataService.gitPath}}
+    <input class="searchBox" type="text" ng-model="search" placeholder="Filter...">
+  </div>
+
+  <div ng-class="dataService.pageLoading ? 'contentintransition' :'content'">
+  	<div class="imgTile repeat-fade" ng-repeat="slide in dataService.slides | orderBy:sorter:reverse | filter:search:strict" 
+      ng-click="viewItem()" ng-animate="'slide'">
+      <div class="imgTileTitle" ng-click="selectMe()">{{slide.name}}</div>
+      <div class="imgThumbWrapper" style="background-image: url({{slide.localImage}})">
+      </div>
+    </div>
+  </div>	
+</div>
+
+
+
+

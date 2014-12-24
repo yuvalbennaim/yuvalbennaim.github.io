@@ -1,0 +1,17 @@
+<div ng-controller="PortfolioCtrl" ng-init="init()">
+
+	<div class="header">
+    {{dataService.selected.name}}
+    <input class="searchBox" type="button" ng-click="backToPortfolio()" value="Back">
+  </div>
+
+  <div class="content">
+    <img ng-src="{{dataService.selected.download_url}}" /> 
+  </div>
+	
+</div>
+
+
+
+
+

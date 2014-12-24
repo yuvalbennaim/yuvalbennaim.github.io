@@ -1,0 +1,200 @@
+
+  BODY {
+    background-color: #fff;
+    margin: 0px;
+    font-family: monospace;
+    overflow: hidden;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    color: #eee;
+    background-color: #3A6C9D;
+    border-bottom: 1px solid #BCBCBC;
+    padding: 5px;
+    font-weight: :bold;
+  }
+
+  .content {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    top: 3em;
+    bottom : 0;
+    overflow: auto;
+    padding: 40px;
+  }
+
+  .contentintransition {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    top: 3em;
+    bottom : 0;
+    padding: 40px;
+    overflow: hidden;
+  }
+
+  .searchBox {
+    float: right;
+  }
+  
+  .backcanvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom : 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  .imgTileTitle {
+    color: #4D8ACC;
+    text-align: center;
+  }
+
+  .imgTile {
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    margin: 20px;
+    float: left;
+    cursor: pointer;
+  }
+
+  .imgThumbWrapper {
+    width: 200px;
+    height: 150px;
+    margin-top: 5px;
+    border-radius: 200px;
+    -moz-box-shadow: inset -20px -20px 50px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 5px 5px 15px 3px rgba(255, 255, 255, .9), 
+                inset -5px -5px 30px 5px rgba(0, 0, 0, 0.9), 
+                0px 0px 44px 3px rgba(80, 96, 105, 0.8);
+    background-size: 200px 150px;
+    background-repeat: no-repeat;
+    -webkit-transform: scale(1, 1);
+    /*transition: all .2s ease-in-out;*/
+  }
+
+  .imgThumbWrapper:hover {
+    box-shadow: inset 5px 5px 8px 3px rgba(255, 255, 255, 1), 
+                inset -5px -5px 30px 5px rgba(0, 0, 0, 0.65), 
+                0px 0px 44px 3px rgba(80, 96, 105, 0.8);
+    -webkit-transform: scale(1.4, 1.4);
+    /*transition: all .2s ease-in-out;*/
+  }
+
+  .repeat-fade.ng-enter, .repeat-fade.ng-leave {
+    -webkit-transition:1s linear all;
+    transition:1s linear all;
+  }
+  
+  .repeat-fade.ng-enter, .repeat-fade.ng-leave.ng-leave-active {
+    opacity:0;
+  }
+  
+  .repeat-fade.ng-leave, .repeat-fade.ng-enter.ng-enter-active {
+    opacity:1;
+  }
+  
+
+  .fadeanim.ng-hide-add,.fadeanim.ng-hide-remove {
+    -webkit-transition: 1s linear all;
+    transition: 1s linear all;
+    display: block!important;
+    opacity: 1;
+  }
+  .fadeanim.ng-hide {
+    opacity: 0;
+  }
+
+
+
+.view-animate-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom : 0;
+  overflow: hidden;
+}
+
+
+ 
+.view-animate-forward.ng-enter {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:100%;
+  width: 100%;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-forward.ng-enter.ng-enter-active {
+  left:0;
+}
+
+.view-animate-forward.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-forward.ng-leave.ng-leave-active {
+  left:-100%;
+}
+
+
+
+
+.view-animate-backward.ng-enter {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:-100%;
+  right:0;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-backward.ng-enter-active {
+  left:0;
+}
+
+.view-animate-backward.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-backward.ng-leave-active {
+  left:100%;
+}
+
+
+

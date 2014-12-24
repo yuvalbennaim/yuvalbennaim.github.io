@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en-US" ng-app="AppModule">
+  <head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link href="css/site.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/angular/angular.1.2.6.js"></script>
+    <script src="js/angular/angular-animate.min.js"></script>
+    <script src="js/angular/angular-route.min.js"></script>
+    <script src="js/angular/angular-resource.min.js"></script>
+    <script src="js/angular/modules/yuval_directives.js"></script>
+    <script src="js/angular/modules/pagecontrollers.js"></script>
+  </head>
+
+  <body ng-controller="RouteController" ng-init="init()">
+    <div class="view-animate-container">
+      <ng-view id="view" class="{{dataService.transitionClass}}"></ng-view>  
+      <yb-loading width="125" height="125" show="dataService.pageLoading" />
+    </div>
+  </body>
+</html>
