@@ -146,7 +146,6 @@
 
             for(var s = 0; s < $scope.dataService.slides.length; s++) {
               $scope.dataService.slides[s].image = $scope.dataService.slides[s].download_url;
-              $scope.dataService.slides[s].localImage = "/images/" + $scope.dataService.slides[s].name;
               $scope.dataService.slides[s].text = $scope.dataService.slides[s].name;
             }
           }).
