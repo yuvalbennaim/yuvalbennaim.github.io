@@ -9,8 +9,7 @@
   	<div class="imgTile repeat-fade" ng-repeat="slide in dataService.slides | orderBy:sorter:reverse | filter:search:strict" 
       ng-click="viewItem()" ng-animate="'slide'">
       <div class="imgTileTitle" ng-click="selectMe()">{{slide.name}}</div>
-      <div class="imgThumbWrapper" style="background-image: url({{slide.download_url}})">
-      </div>
+      <div class="imgThumbWrapper" style="background-image: url({{slide.download_url}})"></div>
     </div>
   </div>	
 </div>
