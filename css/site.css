@@ -24,6 +24,7 @@
     right: 1em;
     top: 3em;
     bottom : 0;
+    overflow: auto;
   }
 
   .content {
