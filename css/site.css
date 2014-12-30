@@ -7,20 +7,52 @@
   }
 
   .header {
-    position: absolute;
+    position: fixed;
     padding: 10px;
     display: block;
     top: 20px;
     left: 20px;
     right: 20px;
-    background-color: rgb(73, 73, 73);
-    color: rgb(111, 192, 216);
-    font-size: 4em;
-    font-weight: bold;
+    color: rgb(100, 184, 208);
+    font-size: 5em;
     font-family: 'Sonsie One', cursive;
+    text-shadow: 2px 2px 2px #FFFFFF;
+    opacity: .7;
+    text-align: center;
+    }
+
+    .subheader {
+        position: fixed;
+        padding: 10px;
+        display: block;
+        top: 4em;
+        left: 20px;
+        right: 20px;
+        color: rgb(255, 255, 255);
+        font-size: 2em;
+        font-family: 'Sonsie One', cursive;
+        text-shadow: 2px 2px 5px #000000;
+        opacity: .7;
+        text-align: center;
+    }
+
+  .menu {
+    position: fixed;
+    padding: 10px;
+    display: block;
+    top: 20px;
+    right: 20px;
+    left: 72%;
+    bottom: 20px;
+    background-color: rgb(73, 73, 73);
+    color: rgb(215, 215, 215);
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Carter One', cursive;
     text-shadow: 2px 2px 2px #FFFFFF;
     opacity: .8;
     border: 2px solid rgba(255, 255, 255, 0.12);
     border-radius: 10px;
-    text-align: center;
+    -moz-box-shadow: inset -20px -20px 50px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 5px 5px 15px 3px rgba(255, 255, 255, .9), inset -5px -5px 30px 5px rgba(0, 0, 0, 0.9), 0px 0px 44px 3px rgba(80, 96, 105, 0.8);
   }
