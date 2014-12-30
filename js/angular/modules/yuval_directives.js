@@ -203,7 +203,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
             ctx.fill();
-            ctx.lineWidth = 4;
+            ctx.lineWidth = 3;
             ctx.strokeStyle = '#fff';
             ctx.stroke();
 
