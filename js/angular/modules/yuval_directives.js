@@ -121,8 +121,6 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.element = element;
       $scope.attrs = attrs;
       $scope.bubbles;
-      $scope.particleNum = 50;
-      $scope.interval;
     },
 
     controller: function($scope, $timeout, dataService) {   
