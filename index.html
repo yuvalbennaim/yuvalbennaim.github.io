@@ -5,41 +5,21 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Yuvalbennaim.GitHub.io : ">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link href="css/site.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/angular/angular.1.2.6.js"></script>
+    <script src="js/angular/angular-animate.min.js"></script>
+    <script src="js/angular/angular-route.min.js"></script>
+    <script src="js/angular/angular-resource.min.js"></script>
+    <script src="js/angular/modules/yuval_directives.js"></script>
+    <script src="js/angular/modules/pagecontrollers.js"></script>
 
     <title>Yuvalbennaim.GitHub.io</title>
   </head>
 
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/yuvalbennaim">View on GitHub</a>
-
-          <h1 id="project_title">Yuvalbennaim.GitHub.io</h1>
-          <h2 id="project_tagline"></h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-          <a class="anchor" href="root.html">test<span class="octicon octicon-link"></span></a>Coming Soon...</h3>
-
-
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+  <body ng-app="AppModule" ng-controller="RouteController">
+    <yb-grid ng-show="dataService.showGrid"></yb-grid>
+    <yb-bubbles count="15"></yb-bubbles>
+    <span class="header">Yuval Bennaim</span>
   </body>
 </html>

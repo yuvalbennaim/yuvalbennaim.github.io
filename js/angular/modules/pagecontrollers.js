@@ -9,35 +9,17 @@
         }
       })
       
-      .otherwise({redirectTo: '/home'});
+      .otherwise({redirectTo: '/index'});
   }); 
 
-  app.service('GitFactory', function($resource) {
-    //useage for object: var result = GitFactory.get(); 
-    //useage for array: var result = GitFactory.query(); 
-    return $resource('js/mockdata.json');
-  });
-
   app.service('dataService', function() {
-    var dataServiceInstance = {};
-    dataServiceInstance.transitionClass = "view-animate-forward";
-    dataServiceInstance.gitPath = "https://api.github.com/repos/yuvalbennaim/git/contents/Portfolio";
-    dataServiceInstance.name = "Yuval";
-    dataServiceInstance.lastname = "Bennaim";
-    dataServiceInstance.slides = [];
-    dataServiceInstance.mockData;
-    dataServiceInstance.pageLoading = true;
-    dataServiceInstance.error = false;
-    return dataServiceInstance;
-  });
+    var dataService = {};
+    dataService.showGrid = false;
+    dataService.continue = true;
 
-  app.provider('$dataProvider', function() {
-    this.name = "Yuval";
-    this.lastname = "Bennaim";
-
-    this.$get = function() {
-      return this.name + " " + this.lastname;
-    };
+    /*add all the graphics params here*/
+    
+    return dataService;
   });
   
   
