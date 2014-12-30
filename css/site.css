@@ -21,3 +21,18 @@
     opacity: .5;
   }
 
+  .subheader {
+    position: absolute;
+    padding-left: 20px;
+    display: block;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: rgb(73, 73, 73);
+    color: white;
+    font-size: 5em;
+    font-weight: bold;
+    font-family: fantasy;
+    opacity: .5;
+  }
+

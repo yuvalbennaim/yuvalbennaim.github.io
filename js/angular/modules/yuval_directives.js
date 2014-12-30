@@ -41,7 +41,7 @@ yuvalsDirectives.directive("ybGrid", function() {
         
         $scope.canvas.width = window.innerWidth;
         $scope.canvas.height = window.innerHeight;
-        console.log("resize " + $scope.canvas.width + ":" + $scope.canvas.height);
+        //console.log("resize " + $scope.canvas.width + ":" + $scope.canvas.height);
         $scope.drawGrid();
       }
       
@@ -113,6 +113,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
     scope: {
       width: "@width",
       height: "@height",
+      bubbles: "@count",
       count: "@count"
     },
 
@@ -120,6 +121,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.element = element;
       $scope.attrs = attrs;
       $scope.bubbles;
+      $scope.particleNum = 50;
       $scope.interval;
     },
 
@@ -177,10 +179,13 @@ yuvalsDirectives.directive("ybBubbles", function() {
           var g = parseInt(Math.random() * 255);
           var b = parseInt(Math.random() * 255);
           this.radius = 1;
-          this.alpha = .1;
+          this.alpha = .15;
           this.vr = Math.max(2, parseInt(Math.random() * 10));
-          this.maxRadius = maxer;
-          this.color = "rgb("+r+", "+g+", "+b+")";    
+          this.maxRadius = Math.max(maxer/4, parseInt(Math.random() * maxer/2));
+          this.frames = parseInt(this.maxRadius / this.vr);
+          this.color = "rgb("+r+", "+g+", "+b+")"; 
+          this.frames = this.maxRadius / this.vr;
+          this.alphaDecay = (this.alpha / this.frames);
         }
 
         this.create();
@@ -191,17 +196,16 @@ yuvalsDirectives.directive("ybBubbles", function() {
         }
 
         this.drawMe = function(ctx) {
-          if(this.radius >= this.maxRadius) { //death and rebirth
+          if(this.alpha <= 0 || this.radius >= this.maxRadius) {
             this.rebirth(ctx);
           }
           else {
-            
             ctx.globalAlpha = this.alpha; 
             ctx.fillStyle = this.color; //gradient; 
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
             ctx.fill();
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 4;
             ctx.strokeStyle = '#fff';
             ctx.stroke();
 
@@ -212,11 +216,12 @@ yuvalsDirectives.directive("ybBubbles", function() {
             ctx.fill();
 
             this.radius += this.vr; 
+            this.alpha -= this.alphaDecay;
           }    
         };
       }
 
-      $scope.drawBubbles= function() {
+      $scope.drawBubbles = function() {
         var ctx = $scope.ctx;
         var center = $scope.center;
         ctx.globalAlpha = 0.1;
