@@ -8,15 +8,19 @@
 
   .header {
     position: absolute;
-    padding-left: 20px;
+    padding: 10px;
     display: block;
     top: 20px;
     left: 20px;
     right: 20px;
     background-color: rgb(73, 73, 73);
-    color: white;
+    color: rgb(111, 192, 216);
     font-size: 4em;
     font-weight: bold;
     font-family: 'Sonsie One', cursive;
-    opacity: .7;
+    text-shadow: 2px 2px 2px #FFFFFF;
+    opacity: .8;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    text-align: center;
   }

@@ -129,6 +129,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.init = function() {
         $timeout($scope.setCanvasDimensions);
         $timeout($scope.initializeBubles);
+        $timeout($scope.stop, 20000);
         
         $(window).resize(function() {
           $scope.setCanvasDimensions();
@@ -163,6 +164,10 @@ yuvalsDirectives.directive("ybBubbles", function() {
         if($scope.dataService.continue == true) {
           $scope.draw();
         }
+      }
+
+      $scope.stop = function() {
+        $scope.dataService.continue = false;
       }
          
       $scope.createBubble = function(i) {
