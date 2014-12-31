@@ -22,11 +22,15 @@
   <body ng-app="AppModule" ng-controller="RouteController">
     <yb-grid ng-show="dataService.showGrid"></yb-grid>
     <yb-bubbles count="20"></yb-bubbles>
-    <span class="header">Yuval Bennaim</span>
+    <div class="header">Yuval Bennaim</div>
 
-    <span class="subheader">User Interfaces Innovator</span>
+    <div class="subheader">User Interfaces Innovator</div>
 
-    <span class="footer"><a href="/#resume">Resume</a> | <a>Portfolio</a> | <a>Skills</a> | <a>Misc</a></span>
+    <div class="content" ng-view ng-show="dataService.viewReady"></div>
+
+    <div class="footer">
+        <a href="/#resume">Resume</a> | <a>Portfolio</a> | <a>Skills</a>
+    </div>
 
   </body>
 </html>

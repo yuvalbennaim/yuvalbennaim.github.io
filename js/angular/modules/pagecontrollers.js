@@ -9,12 +9,13 @@
         }
       })
       
-      .otherwise({redirectTo: '/index'});
+      .otherwise({redirectTo: '/root'});
   }); 
 
   app.service('dataService', function() {
     var dataService = {};
     dataService.showGrid = false;
+    dataService.viewReady = false;
     dataService.continue = true;
 
     /*add all the graphics params here*/

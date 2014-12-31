@@ -14,7 +14,6 @@
   .header {
     position: fixed;
     padding: 10px;
-    display: block;
     top: 20px;
     left: 20px;
     right: 20px;
@@ -29,7 +28,6 @@
   .subheader {
     position: fixed;
     padding: 10px;
-    display: block;
     top: 4em;
     left: 20px;
     right: 20px;
@@ -41,10 +39,27 @@
     text-align: center;
   }
 
+  .content {
+    position: fixed;
+    padding: 10px;
+    top: 200px;
+    bottom: 86px;
+    left: 20px;
+    right: 20px;
+    color: rgb(26, 26, 26);
+    font-size: 1em;
+    font-family: sans-serif;
+    opacity: .5;
+    text-align: center;
+    background-color: #D8D8D8;
+    border: 1px solid rgba(255, 255, 255, 0.81);
+    border-radius: 20px;
+    -webkit-transform: rotateY(120deg); 
+  }
+
   .footer {
     position: fixed;
     padding: 10px;
-    display: block;
     bottom: 20px;
     left: 20px;
     right: 20px;
