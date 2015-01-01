@@ -21,7 +21,7 @@
 
   <body ng-app="AppModule" ng-controller="RouteController">
     <yb-grid ng-show="dataService.showGrid"></yb-grid>
-    <yb-bubbles count="20"></yb-bubbles>
+    <yb-bubbles count="20" animate="dataService.animateBubbles" ng-click="toggleContinue()"></yb-bubbles>
     <div class="header">Yuval Bennaim</div>
 
     <div class="subheader">User Interfaces Innovator</div>
@@ -29,8 +29,11 @@
     <div class="content" ng-view ng-show="dataService.viewReady"></div>
 
     <div class="footer">
-        <a href="/#resume">Resume</a> | <a>Portfolio</a> | <a>Skills</a>
-    </div>
-
+      <a class="link" ng-click="viewPage('/#home')">Home</a> |
+      <a class="link" ng-click="viewPage('/#resume')">Resume</a> | 
+      <a class="link" ng-click="viewPage('/#portfolio')">Portfolio</a> | 
+      <a class="link" ng-click="viewPage('/#skills')">Skills | 
+      <a href="https://github.com/yuvalbennaim/yuvalbennaim.github.io" target="_new">GitHub</a>
+      <span ng-show="dataService.mobile">Mobile</span>
   </body>
 </html>

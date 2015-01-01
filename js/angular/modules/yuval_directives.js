@@ -108,13 +108,13 @@ yuvalsDirectives.directive("ybBubbles", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<canvas ng-init="init()" width="{{width}}" height="{{height}}" ng-click="toggleContinue()" style="position: fixed"/>',
+    template: '<canvas ng-init="init()" width="{{width}}" height="{{height}}" style="position: fixed"/>',
 
     scope: {
       width: "@width",
       height: "@height",
-      bubbles: "@count",
-      count: "@count"
+      count: "@count",
+      animate: "=animate"
     },
 
     link: function($scope, element, attrs) {
@@ -127,9 +127,17 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.dataService = dataService;
 
       $scope.init = function() {
-        $timeout($scope.setCanvasDimensions);
-        $timeout($scope.initializeBubles);
-        //$timeout($scope.stop, 20000);
+        $timeout(function() {
+          $scope.setCanvasDimensions();
+          $scope.initializeBubles();
+
+          $scope.$watch('animate', function(newValue, oldValue) {
+            if($scope.animate == true) {
+              $scope.setCanvasDimensions();
+              $scope.draw();
+            }
+          });
+        });
         
         $(window).resize(function() {
           $scope.setCanvasDimensions();
@@ -138,7 +146,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
       
       $scope.setCanvasDimensions = function() {
         if($scope.canvas == null) {
-          $scope.canvas =  $scope.element.find('canvas')[0];
+          $scope.canvas = $scope.element.find('canvas')[0];
         }
         
         $scope.canvas.width = window.innerWidth;
@@ -154,20 +162,10 @@ yuvalsDirectives.directive("ybBubbles", function() {
         for(var b = 0; b < $scope.count; b++) {
           $scope.bubbles.push(new $scope.createBubble(b));
         }
-
-        $scope.draw();
-      }
-
-      $scope.toggleContinue = function() {
-        $scope.dataService.continue = !$scope.dataService.continue;
-
-        if($scope.dataService.continue == true) {
-          $scope.draw();
-        }
       }
 
       $scope.stop = function() {
-        $scope.dataService.continue = false;
+        $scope.dataService.animateBubbles = false;
       }
          
       $scope.createBubble = function(i) {
@@ -236,12 +234,11 @@ yuvalsDirectives.directive("ybBubbles", function() {
       }
 
       $scope.draw = function() {
-        if($scope.canvas != null && $scope.dataService.continue) {
+        if($scope.canvas != null && $scope.animate) {
           $scope.ctx = $scope.canvas.getContext("2d");                 
           $scope.ctx.clearRect(0, 0, $scope.w, $scope.h); //clear the previous drawing           
           $scope.drawBubbles();
-          $scope.interval = $timeout($scope.draw, 50);
-          //window.requestAnimationFrame($scope.draw);
+          $timeout($scope.draw, 50);
         }
       }
     }

@@ -9,14 +9,19 @@
         }
       })
       
-      .otherwise({redirectTo: '/root'});
+      .otherwise({redirectTo: '/home'});
   }); 
 
   app.service('dataService', function() {
     var dataService = {};
     dataService.showGrid = false;
     dataService.viewReady = false;
-    dataService.continue = true;
+    dataService.animateBubbles = true;
+
+    var width = screen.width;
+    var height = screen.height;
+    dataService.mobile = width < 1000;
+    dataService.orientation = (width > height) ? "landscape" : "portrait";
 
     /*add all the graphics params here*/
     
@@ -34,10 +39,14 @@
       var path = $location.path();
       path = path.substring(1, path.length);
 
-      if(path == "portfolio") {
+      if(path == "home") {
+        dataService.viewReady = false;
+        dataService.animateBubbles = true;
         $scope.dataService.transitionClass = "view-animate-backward";
       }
       else {
+        dataService.viewReady = true;
+        dataService.animateBubbles = false;
         $scope.dataService.transitionClass = "view-animate-forward";
       }
 
@@ -62,6 +71,14 @@
         $scope.dataService.pageLoading = false;
       }, 2000);
     });
+
+    $scope.viewPage = function(url) {
+      top.location = url;
+    }
+
+    $scope.toggleContinue = function() {
+      $scope.dataService.animateBubbles = !$scope.dataService.animateBubbles;
+    }
   }
   
   
@@ -73,19 +90,28 @@
   };
   
   
-  ///////////////////////  HOME CONTROLLER //////////////////////////////////////
+  ///////////////////////  RESUME CONTROLLER //////////////////////////////////////
   
 
-  function HomeCtrl($scope, $injector, $http, $timeout, dataService, GitFactory, $dataProvider) {
+  function ResumeCtrl($scope, $injector, $http, $timeout, dataService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
     $scope.dataService = dataService;
 
     $scope.init = function() {
-      $scope.dataService.mockData = GitFactory.query();
-      $scope.dataProviderOutput = $dataProvider
     }
   };
 
+
+  ///////////////////////  RESUME CONTROLLER //////////////////////////////////////
+  
+
+  function SkillsCtrl($scope, $injector, $http, $timeout, dataService) {
+    $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
+    $scope.dataService = dataService;
+
+    $scope.init = function() {
+    }
+  };
 
   ///////////////////////  PORTFOLIO CONTROLLER //////////////////////////////////////
   
@@ -96,6 +122,11 @@
     $scope.sorter = 'name';
     $scope.search = '';
 
+    $scope.init = function() {
+      //$scope.getGitRepositoryData();
+    }
+
+    /*
     $scope.init = function() {
       $scope.getGitRepositoryData();
     }
@@ -137,5 +168,5 @@
             $scope.dataService.error = true;
           });
       }
-    }
+    }*/
   };

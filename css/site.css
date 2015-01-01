@@ -6,9 +6,10 @@
     overflow: hidden;
   }
 
-  A {
+  A, .link {
     color: #fff;
     text-decoration: initial;
+    cursor: pointer;
   }
 
   .header {
@@ -51,10 +52,9 @@
     font-family: sans-serif;
     opacity: .5;
     text-align: center;
-    background-color: #D8D8D8;
-    border: 1px solid rgba(255, 255, 255, 0.81);
+    background-color: #555;
     border-radius: 20px;
-    -webkit-transform: rotateY(120deg); 
+    -webkit-transform: rotateY(0deg); 
   }
 
   .footer {
