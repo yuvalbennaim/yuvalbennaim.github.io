@@ -114,6 +114,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
       width: "@width",
       height: "@height",
       count: "@count",
+      dimmer: "=dimmer",
       animate: "=animate"
     },
 
@@ -195,7 +196,13 @@ yuvalsDirectives.directive("ybBubbles", function() {
             this.rebirth(ctx);
           }
           else {
-            ctx.globalAlpha = this.alpha; 
+            var alpha = this.alpha;
+
+            if($scope.dimmer) {
+              alpha = alpha/2;
+            }
+
+            ctx.globalAlpha = alpha; 
             ctx.fillStyle = this.color; //gradient; 
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
