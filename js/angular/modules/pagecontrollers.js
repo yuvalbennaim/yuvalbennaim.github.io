@@ -15,8 +15,11 @@
   app.service('dataService', function() {
     var dataService = {};
     dataService.showGrid = false;
-    dataService.viewReady = false;
+    dataService.viewShowing = false;
     dataService.animateBubbles = true;
+    dataService.transitionClass = "view-animate-forward";
+    dataService.gitPath = "https://api.github.com/repos/yuvalbennaim/git/contents/Portfolio";
+    dataService.slides = [];
 
     var width = screen.width;
     var height = screen.height;
@@ -32,7 +35,7 @@
   //////////////////////  ROUTE CONTROLLER  ////////////////////////////////////// 
 
 
-  function RouteController($scope, $location, $timeout, dataService) {
+  function RouteController($rootScope, $scope, $location, $timeout, dataService) {
     $scope.dataService = dataService;
    
     $scope.$on('$locationChangeStart', function(next, current) { 
@@ -40,14 +43,12 @@
       path = path.substring(1, path.length);
 
       if(path == "home") {
-        dataService.viewReady = false;
+        dataService.viewShowing = false;
         dataService.animateBubbles = true;
-        $scope.dataService.transitionClass = "view-animate-backward";
       }
       else {
-        dataService.viewReady = true;
-        dataService.animateBubbles = false;
-        $scope.dataService.transitionClass = "view-animate-forward";
+        dataService.viewShowing = true;
+        //dataService.animateBubbles = false;
       }
 
       console.log("routeChangeStart: " + path);
@@ -121,12 +122,12 @@
     $scope.dataService = dataService;
     $scope.sorter = 'name';
     $scope.search = '';
+    https://api.github.com/repos/yuvalbennaim/yuvalbennaim.github.io/contents/images/Portfolio";
 
     $scope.init = function() {
-      //$scope.getGitRepositoryData();
+      $scope.getGitRepositoryData();
     }
 
-    /*
     $scope.init = function() {
       $scope.getGitRepositoryData();
     }
@@ -159,7 +160,6 @@
             $scope.dataService.slides = data;
 
             for(var s = 0; s < $scope.dataService.slides.length; s++) {
-              $scope.dataService.slides[s].image = $scope.dataService.slides[s].download_url;
               $scope.dataService.slides[s].text = $scope.dataService.slides[s].name;
             }
           }).
@@ -168,5 +168,5 @@
             $scope.dataService.error = true;
           });
       }
-    }*/
+    }
   };

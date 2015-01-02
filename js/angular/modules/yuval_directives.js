@@ -129,7 +129,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.init = function() {
         $timeout(function() {
           $scope.setCanvasDimensions();
-          $scope.initializeBubles();
+          $scope.initializeBubbles();
 
           $scope.$watch('animate', function(newValue, oldValue) {
             if($scope.animate == true) {
@@ -156,21 +156,16 @@ yuvalsDirectives.directive("ybBubbles", function() {
         $scope.center = {"x" : $scope.w/2, "y" : $scope.h/2}; 
       }
 
-      $scope.initializeBubles = function() {
+      $scope.initializeBubbles = function() {
         $scope.bubbles = [];
 
         for(var b = 0; b < $scope.count; b++) {
           $scope.bubbles.push(new $scope.createBubble(b));
         }
       }
-
-      $scope.stop = function() {
-        $scope.dataService.animateBubbles = false;
-      }
          
       $scope.createBubble = function(i) {
         this.id = "bubble _" + i;
-        this.lifeCounter = this.lifeCounter === undefined ? 1 : this.lifeCounter ++;
 
         this.create = function() {
           this.x = parseInt(Math.random() * $scope.w);
@@ -191,8 +186,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
 
         this.create();
 
-        this.rebirth = function() {
-          this.lifeCounter++;          
+        this.rebirth = function() {   
           this.create();
         }
 
@@ -227,7 +221,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
         var center = $scope.center;
         ctx.globalAlpha = 0.1;
 
-        for(var p = 0; p < $scope.bubbles.length; p++) { // loop through each column
+        for(var p = 0; p < $scope.bubbles.length; p++) {
           var bubble = $scope.bubbles[p];
           bubble.drawMe(ctx);          
         }
@@ -236,7 +230,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.draw = function() {
         if($scope.canvas != null && $scope.animate) {
           $scope.ctx = $scope.canvas.getContext("2d");                 
-          $scope.ctx.clearRect(0, 0, $scope.w, $scope.h); //clear the previous drawing           
+          $scope.ctx.clearRect(0, 0, $scope.w, $scope.h);          
           $scope.drawBubbles();
           $timeout($scope.draw, 50);
         }
@@ -244,4 +238,3 @@ yuvalsDirectives.directive("ybBubbles", function() {
     }
   }
 });
-

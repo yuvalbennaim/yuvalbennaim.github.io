@@ -12,6 +12,26 @@
     cursor: pointer;
   }
 
+  A:hover, .link:hover {
+    color: #FF4F4F;
+    text-shadow: 0px 0px 30px #ED3E3E;
+  }
+
+  ::-webkit-scrollbar {
+    width: 18px;  /* for vertical scrollbars */
+    height: 1px; /* for horizontal scrollbars */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(169, 169, 169, 0.3);
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(152, 152, 152, 0.6);
+    border-radius: 8px;
+  }
+
   .header {
     position: fixed;
     padding: 10px;
@@ -40,22 +60,41 @@
     text-align: center;
   }
 
-  .content {
+  .welcomeMessage {
     position: fixed;
     padding: 10px;
-    top: 200px;
+    top: 50%;
+    bottom: 50%;
+    left: 20%;
+    right: 20%;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    font-family: 'Sonsie One', cursive;
+    text-shadow: 2px 2px 5px #000000;
+    opacity: .7;
+    text-align: center;
+    -webkit-transform: rotateY(0deg); 
+  }
+
+  p::first-letter {
+    font-size: 1.5em;
+  }
+
+  /*.content {
+    position: fixed;
+    padding: 10px;
+    top: 20px;
     bottom: 86px;
     left: 20px;
     right: 20px;
-    color: rgb(26, 26, 26);
+    color: rgb(25, 25, 25);
     font-size: 1em;
     font-family: sans-serif;
-    opacity: .5;
+    opacity: .85;
     text-align: center;
-    background-color: #555;
-    border-radius: 20px;
-    -webkit-transform: rotateY(0deg); 
-  }
+    background-color: rgb(255, 255, 255);
+    overflow: auto;
+  }*/
 
   .footer {
     position: fixed;
@@ -64,9 +103,184 @@
     left: 20px;
     right: 20px;
     color: rgb(255, 255, 255);
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-family: 'Sonsie One', cursive;
     text-shadow: 2px 2px 5px #000000;
     opacity: .7;
     text-align: center;
   }
+
+  .scrolled {
+    overflow: auto;
+  }
+
+  .searchBox {
+    float: right;
+  }
+
+  .contentheader {
+    padding: 10px;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    color: rgb(100, 184, 208);
+    font-size: 2em;
+    font-family: 'Sonsie One', cursive;
+    opacity: .8;
+    text-align: center;
+  }
+
+  .imgTileTitle {
+    color: #fff;
+    text-align: center;
+  }
+
+  .imgTile {
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    margin: 20px;
+    float: left;
+    cursor: pointer;
+  }
+
+  .itemImg {
+  }
+
+  .imgThumbWrapper {
+    width: 200px;
+    height: 200px;
+    margin-top: 5px;
+    border-radius: 200px;
+    -moz-box-shadow: inset -20px -20px 50px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 5px 5px 15px 3px rgba(255, 255, 255, .9), 
+                inset -5px -5px 30px 5px rgba(0, 0, 0, 0.9), 
+                0px 0px 44px 3px rgba(255, 255, 255, 0.8);
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    -webkit-transform: scale(1, 1);
+    /*transition: all .2s ease-in-out;*/
+  }
+
+  .imgThumbWrapper:hover {
+    box-shadow: inset 5px 5px 8px 3px rgba(255, 255, 255, 1), 
+                inset -5px -5px 30px 5px rgba(0, 0, 0, 0.65), 
+                0px 0px 44px 3px rgba(255, 255, 255, 0.8);
+    -webkit-transform: scale(1.4, 1.4);
+    /*transition: all .2s ease-in-out;*/
+  }
+
+  .repeat-fade.ng-enter, .repeat-fade.ng-leave {
+    -webkit-transition:1s linear all;
+    transition:1s linear all;
+  }
+  
+  .repeat-fade.ng-enter, .repeat-fade.ng-leave.ng-leave-active {
+    opacity:0;
+  }
+  
+  .repeat-fade.ng-leave, .repeat-fade.ng-enter.ng-enter-active {
+    opacity:1;
+  }
+  
+
+  .fadeanim.ng-hide-add,.fadeanim.ng-hide-remove {
+    -webkit-transition: 1s linear all;
+    transition: 1s linear all;
+    display: block!important;
+    opacity: 1;
+  }
+  .fadeanim.ng-hide {
+    opacity: 0;
+  }
+
+
+
+.view-animate-container {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  color: rgb(25, 25, 25);
+  font-size: 1em;
+  font-family: sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+ 
+.view-animate-forward.ng-enter {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:100%;
+  width: 100%;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-forward.ng-enter.ng-enter-active {
+  left:0;
+}
+
+.view-animate-forward.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-forward.ng-leave.ng-leave-active {
+  left:-100%;
+}
+
+
+.view-animate-backward.ng-enter {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:-100%;
+  right:0;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-backward.ng-enter-active {
+  left:0;
+}
+
+.view-animate-backward.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-backward.ng-leave-active {
+  left:100%;
+}
+
+
+
+

@@ -1,5 +1,22 @@
-<div ng-controller="PortfolioCtrl" ng-init="init()">
-  Portfolio...
+<div ng-controller="PortfolioCtrl" ng-init="init()" class="scrolled">
+
+	<div class="contentheader">
+    My Portfolio
+  </div>
+
+	<!-- <div class="subheader">
+    Contents of: {{dataService.gitPath}}
+    <input class="searchBox" type="text" ng-model="search" placeholder="Filter...">
+  </div> -->
+
+  <div>
+  	<div class="imgTile repeat-fade" ng-repeat="slide in dataService.slides | orderBy:sorter:reverse | filter:search:strict" 
+      ng-click="viewItem()">
+      <div class="imgTileTitle">{{slide.name}}</div>
+      <div class="imgThumbWrapper" style="background-image: url({{slide.download_url}})">
+      </div>
+    </div>
+  </div>	
 </div>
 
 
