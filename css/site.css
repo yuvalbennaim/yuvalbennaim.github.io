@@ -94,10 +94,6 @@
     text-align: center;
   }
 
-  .scrolled {
-    overflow: auto;
-  }
-
   .searchBox {
     float: right;
   }
@@ -114,9 +110,30 @@
     text-align: center;
   }
 
+  .scrollWrapper {
+    position: absolute;
+    top: 4em;
+    bottom: 0px;
+    left: 1em;
+    right: 1em;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .scrollWrapperInTransition {
+    position: absolute;
+    top: 4em;
+    bottom: 0px;
+    left: 1em;
+    right: 1em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
   .imgTileTitle {
     color: #fff;
     text-align: center;
+    font-size: .8em;
   }
 
   .imgTile {
@@ -130,6 +147,8 @@
   }
 
   .itemImg {
+    padding-top: 3em;
+    opacity: .8;
   }
 
   .imgThumbWrapper {
@@ -140,7 +159,7 @@
     -moz-box-shadow: inset -20px -20px 50px 0px rgba(0,0,0,0.75);
     box-shadow: inset 5px 5px 15px 3px rgba(255, 255, 255, .9), 
                 inset -5px -5px 30px 5px rgba(0, 0, 0, 0.9), 
-                0px 0px 44px 3px rgba(255, 255, 255, 0.8);
+                0px 0px 25px 5px rgba(255, 255, 255, 0.8);
     background-size: 200px 200px;
     background-repeat: no-repeat;
     -webkit-transform: scale(1, 1);
@@ -150,7 +169,7 @@
   .imgThumbWrapper:hover {
     box-shadow: inset 5px 5px 8px 3px rgba(255, 255, 255, 1), 
                 inset -5px -5px 30px 5px rgba(0, 0, 0, 0.65), 
-                0px 0px 44px 3px rgba(255, 255, 255, 0.8);
+                0px 0px 25px 2px rgba(255, 255, 255, 0.8);
     -webkit-transform: scale(1.4, 1.4);
     /*transition: all .2s ease-in-out;*/
   }
@@ -184,15 +203,14 @@
 .view-animate-container {
   position: fixed;
   top: 0px;
-  bottom: 0px;
+  bottom: 5em;
   left: 0px;
   right: 0px;
   color: rgb(25, 25, 25);
   font-size: 1em;
   font-family: sans-serif;
   text-align: center;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 

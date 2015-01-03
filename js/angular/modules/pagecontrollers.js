@@ -37,22 +37,32 @@
 
   function RouteController($rootScope, $scope, $location, $timeout, dataService) {
     $scope.dataService = dataService;
+    $scope.currentPage = "";
    
-    $scope.$on('$locationChangeStart', function(next, current) { 
+    $scope.$on('$locationChangeStart', function(event, next, current) { 
       var path = $location.path();
-      path = path.substring(1, path.length);
+      path = path.substring(1, path.length);      
 
-      if(path == "home") {
-        dataService.viewShowing = false;
-        dataService.animateBubbles = true;
+      if($scope.currentPage != path) {
+        $scope.currentPage = path;
+
+        if(path == "home") {
+          dataService.viewShowing = false;
+          dataService.transitionClass = "view-animate-backward";
+        }
+        else {
+          dataService.viewShowing = true;
+          dataService.transitionClass = "view-animate-forward";
+        }
+
+        console.log("routeChangeStart: " + path);
+        $scope.dataService.pageLoading = true;
       }
       else {
-        dataService.viewShowing = true;
-        //dataService.animateBubbles = false;
+        console.log("same path: " + $scope.currentPage);
+        $scope.currentPage = "";
+        event.preventDefault();
       }
-
-      console.log("routeChangeStart: " + path);
-      $scope.dataService.pageLoading = true;
     });
     
     $scope.$on('$routeChangeError', function (event, args) {
@@ -143,6 +153,7 @@
     $scope.backToPortfolio = function() {
       $scope.search = "";
       $scope.dataService.selected = null;
+      dataService.transitionClass = "view-animate-backward";
 
       $timeout(function () {
         top.location = "#/portfolio";
