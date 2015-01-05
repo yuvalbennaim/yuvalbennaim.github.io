@@ -37,14 +37,16 @@
 
   function RouteController($rootScope, $scope, $location, $timeout, dataService) {
     $scope.dataService = dataService;
-    $scope.currentPage = "";
+    $scope.dataService.previousPage = "";
+    $scope.dataService.currentPage = "";
    
     $scope.$on('$locationChangeStart', function(event, next, current) { 
       var path = $location.path();
       path = path.substring(1, path.length);      
 
-      if($scope.currentPage != path) {
-        $scope.currentPage = path;
+      if($scope.dataService.currentPage != path) {
+        $scope.dataService.previousPage = $scope.dataService.currentPage;
+        $scope.dataService.currentPage = path;
 
         if(path == "home") {
           dataService.viewShowing = false;
@@ -59,9 +61,9 @@
         $scope.dataService.pageLoading = true;
       }
       else {
-        console.log("same path: " + $scope.currentPage);
+        console.log("same path: " + $scope.dataService.currentPage);
         /*to fix*/
-        $scope.currentPage = "";
+        $scope.dataService.currentPage = "";
         event.preventDefault();
       }
     });
@@ -83,6 +85,16 @@
         $scope.dataService.pageLoading = false;
       }, 2000);
     });
+
+    $scope.goBack = function() {
+      $scope.search = "";
+      $scope.dataService.selected = null;
+      dataService.transitionClass = "view-animate-backward";
+
+      $timeout(function () {
+        top.location = "/#" + $scope.dataService.previousPage;
+      });
+    }
 
     $scope.viewPage = function(url) {
       top.location = url;
@@ -148,16 +160,6 @@
 
       $timeout(function () {
         top.location = "#/item";
-      });
-    }
-
-    $scope.backToPortfolio = function() {
-      $scope.search = "";
-      $scope.dataService.selected = null;
-      dataService.transitionClass = "view-animate-backward";
-
-      $timeout(function () {
-        top.location = "#/portfolio";
       });
     }
 

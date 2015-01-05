@@ -104,20 +104,22 @@
     left: 20px;
     right: 20px;
     color: rgb(100, 184, 208);
-    font-size: 2em;
+    font-size: 1.2em;
     font-family: 'Sonsie One', cursive;
     opacity: .8;
     text-align: center;
   }
 
   .contentheadernav {
-    position: absolute;
-    top: 4em;
+    position: fixed;
+    top: 10px;
     bottom: 0px;
     left: 1em;
     color: rgb(100, 184, 208);
-    font-size: 2em;
+    font-size: 1.2em;
     font-family: 'Sonsie One', cursive;
+    z-index: 10;
+    opacity: .7;
   }
 
   .scrollWrapper {
