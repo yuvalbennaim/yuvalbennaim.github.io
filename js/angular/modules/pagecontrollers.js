@@ -14,7 +14,7 @@
 
   app.service('dataService', function() {
     var dataService = {};
-    dataService.showGrid = false;
+    dataService.showGrid = true;
     dataService.viewShowing = false;
     dataService.animateBubbles = true;
     dataService.transitionClass = "view-animate-forward";
@@ -60,6 +60,7 @@
       }
       else {
         console.log("same path: " + $scope.currentPage);
+        /*to fix*/
         $scope.currentPage = "";
         event.preventDefault();
       }

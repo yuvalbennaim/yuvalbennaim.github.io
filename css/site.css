@@ -110,6 +110,16 @@
     text-align: center;
   }
 
+  .contentheadernav {
+    position: absolute;
+    top: 4em;
+    bottom: 0px;
+    left: 1em;
+    color: rgb(100, 184, 208);
+    font-size: 2em;
+    font-family: 'Sonsie One', cursive;
+  }
+
   .scrollWrapper {
     position: absolute;
     top: 4em;
@@ -144,6 +154,7 @@
     float: left;
     cursor: pointer;
     opacity: .8;
+    padding-bottom: 10px;
   }
 
   .itemImg {

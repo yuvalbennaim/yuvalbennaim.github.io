@@ -20,7 +20,7 @@ yuvalsDirectives.directive("ybGrid", function() {
       $scope.minorLineColor = "#222";
       $scope.centerLineColor = "#f00";
       $scope.circleColor = "#6DAEDF";
-      $scope.gridAlpha = .4;
+      $scope.gridAlpha = .2;
     },
 
     controller: function($scope, $timeout, dataService) {
