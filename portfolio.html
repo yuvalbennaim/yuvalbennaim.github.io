@@ -7,7 +7,7 @@
   <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
   	<div class="imgTile repeat-fade" ng-repeat="slide in dataService.slides | orderBy:sorter:reverse | filter:search:strict" 
       ng-click="viewItem()">
-      <div class="imgTileTitle">{{slide.name}}</div>
+      <!-- <div class="imgTileTitle">{{slide.name}}</div> -->
       <div class="imgThumbWrapper" style="background-image: url({{slide.download_url}})">
       </div>
     </div>

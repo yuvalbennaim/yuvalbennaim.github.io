@@ -26,7 +26,7 @@
 
     <div class="header" ng-hide="dataService.viewShowing">Yuval Bennaim</div>
 
-    <div class="subheader" ng-hide="dataService.viewShowing">User Interfaces Innovator</div>
+    <div class="subheader" ng-hide="dataService.viewShowing">User Interfaces Architect</div>
 
     <div class="view-animate-container" ng-show="dataService.viewShowing">
       <ng-view id="view" ng-animate="'slide'" class="{{dataService.transitionClass}}"></ng-view>  
@@ -43,9 +43,9 @@
       <a class="link" ng-click="viewPage('/#resume')">Resume</a> | 
       <a class="link" ng-click="viewPage('/#portfolio')">Portfolio</a> | 
       <a class="link" ng-click="viewPage('/#skills')">Skills | 
-      <a class="link" ng-click="viewPage('/#projects')">Projects | 
+      <!-- <a class="link" ng-click="viewPage('/#projects')">Projects |  -->
       <a href="https://github.com/yuvalbennaim/yuvalbennaim.github.io" target="_new">GitHub</a>
-      <span ng-show="dataService.mobile">Mobile</span>
+     <!--  <span ng-show="dataService.mobile">Mobile</span> -->
     </div>
 
   </body>
