@@ -18,7 +18,7 @@
     dataService.viewShowing = false;
     dataService.animateBubbles = true;
     dataService.transitionClass = "view-animate-forward";
-    dataService.gitPath = "https://api.github.com/repos/yuvalbennaim/git/contents/Portfolio";
+    dataService.gitPath = "https://api.github.com/repos/yuvalbennaim/yuvalbennaim.github.io/contents/images/Portfolio";
     dataService.slides = [];
 
     var width = screen.width;
@@ -145,7 +145,6 @@
     $scope.dataService = dataService;
     $scope.sorter = 'name';
     $scope.search = '';
-    https://api.github.com/repos/yuvalbennaim/yuvalbennaim.github.io/contents/images/Portfolio";
 
     $scope.init = function() {
       $scope.getGitRepositoryData();
