@@ -1,5 +1,17 @@
-<div ng-controller="SkillsCtrl" ng-init="init()">
-  skills...
+<div ng-controller="SkillsCtrl" ng-init="init()" class="scrolled">
+
+	<div class="contentheader">
+    My Skills
+  </div>
+
+  <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
+  	<div class="skillBarWrapper">
+  		<div class="skillBarEachWrapper" ng-repeat="skill in dataService.skills">
+      <div class="skillBar" ng-style="generateBarStyle()">
+      	{{skill.name}} {{skill.score}}
+      </div>
+    </div>
+  </div>	
 </div>
 
 

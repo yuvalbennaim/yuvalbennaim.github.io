@@ -134,7 +134,15 @@
     $scope.dataService = dataService;
 
     $scope.init = function() {
+      $scope.dataService.skills = window.skillsData;
     }
+
+    $scope.generateBarStyle = function() {
+      var bg = "rgba(" + this.skill.color + " , .5)";
+      var w = parseInt(this.skill.score) * 10 + "%";
+      return {"background-color" :  bg, "width" : w}
+    }
+    
   };
 
   ///////////////////////  PORTFOLIO CONTROLLER //////////////////////////////////////

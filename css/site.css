@@ -211,7 +211,28 @@
     opacity: 0;
   }
 
+.skillBarWrapper {
+  padding: 100px;
+  padding-top: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+  padding-left: 100px;
+  font-weight: normal;
+  background-color: rgba(255, 255, 255, 0.9);
+}
 
+.skillBarEachWrapper {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.skillBar {
+  border: 137, 137, 137, 0.5;
+  margin-bottom: 10px;
+  text-align: left;
+  padding: 10px;
+  color: #eee;
+  width: 80%;
+}
 
 .view-animate-container {
   position: fixed;
