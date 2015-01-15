@@ -222,11 +222,10 @@
 }
 
 .skillBarEachWrapper {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .skillBar {
-  border: 137, 137, 137, 0.5;
   margin-bottom: 10px;
   text-align: left;
   padding: 10px;
