@@ -212,6 +212,8 @@
   }
 
 .skillBarWrapper {
+  margin-left: 50px;
+  margin-right: 50px;
   padding: 100px;
   padding-top: 100px;
   padding-right: 100px;
