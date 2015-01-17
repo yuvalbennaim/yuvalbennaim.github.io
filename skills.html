@@ -1,4 +1,4 @@
-<div ng-controller="SkillsCtrl" ng-init="init()" class="scrolled">
+<div ng-controller="SkillsCtrl" ng-init="init()">
 
 	<div class="contentheader">
     My Skills
@@ -6,10 +6,16 @@
 
   <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
   	<div class="skillBarWrapper">
-  		<div class="skillBarEachWrapper" ng-repeat="skill in dataService.skills">
-      <div class="skillBar" ng-style="generateBarStyle()">
-      	{{skill.name}} {{skill.score}}
+
+      <div class="scale">
+        <div class="scaleunit" ng-repeat="unit in dataService.scale">{{unit}}</div>
       </div>
+
+
+  		<div class="skillBarEachWrapper" ng-repeat="skill in dataService.skills">
+        <div class="skillBar" ng-style="generateBarStyle()">
+        	<span class="skillLabel"> {{skill.name}}</span>
+        </div>
     </div>
   </div>	
 </div>

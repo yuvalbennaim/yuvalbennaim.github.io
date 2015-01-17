@@ -15,6 +15,7 @@
   app.service('dataService', function() {
     var dataService = {};
     dataService.showGrid = true;
+    dataService.pageLoading = true;
     dataService.viewShowing = false;
     dataService.animateBubbles = true;
     dataService.transitionClass = "view-animate-forward";
@@ -49,8 +50,12 @@
         $scope.dataService.currentPage = path;
 
         if(path == "home") {
-          dataService.viewShowing = false;
+          //dataService.viewShowing = false;
           dataService.transitionClass = "view-animate-backward";
+
+          // $timeout(function () {
+          //   dataService.viewShowing = true;
+          // }, 5000);
         }
         else {
           dataService.viewShowing = true;
@@ -119,7 +124,6 @@
 
   function ResumeCtrl($scope, $injector, $http, $timeout, dataService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
-    $scope.dataService = dataService;
 
     $scope.init = function() {
     }
@@ -129,17 +133,22 @@
   ///////////////////////  RESUME CONTROLLER //////////////////////////////////////
   
 
-  function SkillsCtrl($scope, $injector, $http, $timeout, dataService) {
+  function SkillsCtrl($scope, $injector, $http, $timeout, dataService, helperService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
-    $scope.dataService = dataService;
+    dataService.scale = [1,2,3,4,5,6,7,8,9,10];
 
     $scope.init = function() {
-      $scope.dataService.skills = window.skillsData;
+      dataService.skills = window.skillsData;
+
+      for (var s = 0; s < dataService.skills.length; s++) {
+        var bg = "rgba(" + helperService.generateRandomColor() + " , .4)";
+        dataService.skills[s].color = bg;
+      };
     }
 
     $scope.generateBarStyle = function() {
-      var bg = "rgba(" + this.skill.color + " , .5)";
-      var w = parseInt(this.skill.score) * 10 + "%";
+      var bg = this.skill.color;
+      var w = parseInt(this.skill.score * 10) + "%";
       return {"background-color" :  bg, "width" : w}
     }
     
@@ -150,7 +159,6 @@
 
   function PortfolioCtrl($scope, $injector, $http, $timeout, dataService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
-    $scope.dataService = dataService;
     $scope.sorter = 'name';
     $scope.search = '';
 
@@ -163,7 +171,7 @@
     }
 
     $scope.viewItem = function() {
-      $scope.dataService.selected = this.slide;
+      dataService.selected = this.slide;
 
       $timeout(function () {
         top.location = "#/item";
@@ -171,22 +179,22 @@
     }
 
     $scope.getGitRepositoryData = function() { 
-      if($scope.dataService.slides.length == 0) {
-        var url = $scope.dataService.gitPath;
-        $scope.dataService.error = false;
-        $scope.dataService.contentList = null;
+      if(dataService.slides.length == 0) {
+        var url = dataService.gitPath;
+        dataService.error = false;
+        dataService.contentList = null;
 
         $http.get(url).
           success(function(data, status, headers, config) {
-            $scope.dataService.slides = data;
+            dataService.slides = data;
 
-            for(var s = 0; s < $scope.dataService.slides.length; s++) {
-              $scope.dataService.slides[s].text = $scope.dataService.slides[s].name;
+            for(var s = 0; s < dataService.slides.length; s++) {
+              dataService.slides[s].text = dataService.slides[s].name;
             }
           }).
           error(function(data, status, headers, config) {
             console.log("error" + data);
-            $scope.dataService.error = true;
+            dataService.error = true;
           });
       }
     }

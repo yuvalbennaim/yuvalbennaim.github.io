@@ -2,6 +2,20 @@
 yuvalsDirectives = angular.module('yuvalsDirectives', []);
 
 
+yuvalsDirectives.service('helperService', function() {
+    var helperService = {};
+    
+    helperService.generateRandomColor = function() {
+      var r = parseInt(Math.random() * 255);
+      var g = parseInt(Math.random() * 255);
+      var b = parseInt(Math.random() * 255);
+      return r + "," + g + "," + b;
+    }
+    
+    return helperService;
+  });
+
+
 yuvalsDirectives.directive("ybGrid", function() {
   return {
     replace: false,
@@ -124,8 +138,8 @@ yuvalsDirectives.directive("ybBubbles", function() {
       $scope.bubbles;
     },
 
-    controller: function($scope, $timeout, dataService) {   
-      $scope.dataService = dataService;
+    controller: function($scope, $timeout, helperService) {   
+      $scope.helperService = helperService;
 
       $scope.init = function() {
         $timeout(function() {
@@ -172,15 +186,12 @@ yuvalsDirectives.directive("ybBubbles", function() {
           this.x = parseInt(Math.random() * $scope.w);
           this.y = parseInt(Math.random() * $scope.h);
           var maxer = Math.max($scope.w, $scope.h);
-          var r = parseInt(Math.random() * 255);
-          var g = parseInt(Math.random() * 255);
-          var b = parseInt(Math.random() * 255);
           this.radius = 1;
           this.alpha = .15;
           this.vr = Math.max(2, parseInt(Math.random() * 10));
           this.maxRadius = Math.max(maxer/4, parseInt(Math.random() * maxer/2));
           this.frames = parseInt(this.maxRadius / this.vr);
-          this.color = "rgb("+r+", "+g+", "+b+")"; 
+          this.color = "rgb(" + $scope.helperService.generateRandomColor() + ")"; 
           this.frames = this.maxRadius / this.vr;
           this.alphaDecay = (this.alpha / this.frames);
         }
