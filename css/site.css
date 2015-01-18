@@ -252,8 +252,8 @@
 }
 
 .skillLabel { 
-  margin-left: 15px;
-  white-space: nowrap;
+  padding-left: 10px;
+  display: block;
 }
 
 .skillScoreLabel {
@@ -349,6 +349,19 @@
 .view-animate-backward.ng-leave-active {
   left:100%;
 }
+
+
+
+
+
+
+
+
+ @media screen and (max-width: 900px) {
+    .header {
+       font-size: 2em;
+    }
+  }
 
 
 

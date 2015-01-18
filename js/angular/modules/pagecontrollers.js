@@ -140,18 +140,14 @@
   function SkillsCtrl($scope, $injector, $http, $timeout, dataService, helperService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
     dataService.scale = [1,2,3,4,5,6,7,8,9,10];
+    $scope.predicate = '-score';
 
     $scope.init = function() {
       dataService.skills = window.skillsData;
-
-      for (var s = 0; s < dataService.skills.length; s++) {
-        var bg = "rgba(" + helperService.generateRandomColor() + " , .3)";
-        dataService.skills[s].color = bg;
-      };
     }
 
     $scope.generateBarStyle = function() {
-      var bg = this.skill.color;
+      var bg = "rgba(" + this.skill.color + " , .3)";
       var w = parseInt(this.skill.score * 10) + "%";
       return {"background-color" :  bg, "width" : w}
     }
