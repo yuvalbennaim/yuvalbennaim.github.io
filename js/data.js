@@ -20,7 +20,7 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "CSS3",
+		"name" : "CSS3, LESS, SASS",
 		"score" : "8.5"
 	}
 	,	
@@ -35,8 +35,13 @@ window.skillsData = [
 	}
 	,
 	{
+		"name" : "Git",
+		"score" : "7.5"
+	}
+	,	
+	{
 		"name" : "Mobile Dev",
-		"score" : "7.8"
+		"score" : "7.5"
 	}
 	,	
 	{
@@ -62,9 +67,10 @@ window.skillsData = [
 	{
 		"name" : "Ruby on Rails",
 		"score" : "4"
-	},
+	}
 ];
 
 
 window.jobData = [
 ];
+

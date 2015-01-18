@@ -91,6 +91,10 @@
       }, 2000);
     });
 
+    $scope.stopAnimation = function() {
+      dataService.animateBubbles = !dataService.animateBubbles;
+    }
+
     $scope.goBack = function() {
       $scope.search = "";
       $scope.dataService.selected = null;
@@ -141,7 +145,7 @@
       dataService.skills = window.skillsData;
 
       for (var s = 0; s < dataService.skills.length; s++) {
-        var bg = "rgba(" + helperService.generateRandomColor() + " , .4)";
+        var bg = "rgba(" + helperService.generateRandomColor() + " , .3)";
         dataService.skills[s].color = bg;
       };
     }

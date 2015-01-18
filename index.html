@@ -23,7 +23,7 @@
   <body ng-app="AppModule" ng-controller="RouteController">
     <yb-grid ng-show="dataService.showGrid"></yb-grid>
 
-    <yb-bubbles count="25" animate="dataService.animateBubbles" dimmer="dataService.viewShowing" ng-click="toggleContinue()"></yb-bubbles>
+    <yb-bubbles count="25" animate="dataService.animateBubbles" dimmer="dataService.viewShowing" ngx-click="toggleContinue()"></yb-bubbles>
 
 
     <div class="header" ngx-hide="dataService.viewShowing">
@@ -36,8 +36,15 @@
       <yb-loading width="125" height="125" show="dataService.pageLoading" />
     </div>
 
-     <div class="contentheadernav" ng-show="dataService.currentPage != 'home'">
-      <a ng-click="goBack()">&lt;Back</a>
+     <div class="backButton" ng-show="dataService.currentPage != 'home'">
+      <a ng-click="goBack()">&lt;&nbsp;Back</a>
+    </div>
+
+    <div class="stopAnimating">
+      <a ng-click="stopAnimation()">
+        <span ng-show="dataService.animateBubbles">Stop</span>
+        <span ng-hide="dataService.animateBubbles">Play</span>
+        &nbsp;Animation</a>
     </div>
 
     <div class="footer">
