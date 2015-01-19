@@ -9,6 +9,7 @@
     color: #fff;
     text-decoration: initial;
     cursor: pointer;
+
   }
 
   A:hover, .link:hover {
@@ -106,7 +107,7 @@
     top: 20px;
     left: 20px;
     right: 20px;
-    color: rgba(232, 221, 139, 0.76);
+    color: rgba(250, 201, 111, 0.7);
     font-size: 1.2em;
     opacity: .8;
     text-align: center;
@@ -237,6 +238,22 @@
   color: #A3A3A3;
 }
 
+.scaleUnitLabel {
+  padding: 2px;
+  width: 2em;
+  display: inline-block;
+  text-align: center;
+}
+
+.scaleUnitLabelSelected {
+  background-color: rgba(250, 201, 111, 0.5);
+  padding: 2px;
+  border-radius: 30px;
+  width: 2em;
+  display: inline-block;
+  text-align: center;
+}
+
 .skillBarWrapper {
   margin-left: 50px;
   margin-right: 50px;
@@ -277,6 +294,19 @@
 .skillBar:hover {
   border: 2px solid rgba(255, 255, 255, 0.5);
   box-shadow: inset 2px 2px 10px 0px rgba(255, 255, 255, 1), inset -10px -10px 10px 0px rgba(0, 0, 0, 0.65);
+}
+
+.scalemarker {
+  position: absolute;
+  color: red;
+  background-color: white;
+  /* bottom: 1em; */
+  height: 2em;
+  left: 367px;
+  top: 1em;
+  width:10%;
+  text-align: center;
+  opacity: .6;
 }
 
 

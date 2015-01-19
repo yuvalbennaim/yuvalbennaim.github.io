@@ -151,7 +151,16 @@
       var w = parseInt(this.skill.score * 10) + "%";
       return {"background-color" :  bg, "width" : w}
     }
-    
+
+    $scope.generateMarkerStyle = function() {
+      if(dataService.currentMarker == null) {
+        return null;
+      }
+      else {
+        var offset = parseInt((dataService.currentMarker-1) * 10) + "%";
+        return {"left" : offset}
+      }
+    }
   };
 
   ///////////////////////  PORTFOLIO CONTROLLER //////////////////////////////////////

@@ -9,31 +9,25 @@ window.skillsData = [
 	,
 	{
 		"name" : "Javascript",
-		"score" : 9.5,
+		"score" : 9,
 		"color" :"177, 232, 239"
 	}
 	,
 	{
 		"name" : "Angular.JS",
-		"score" : 9.0,
+		"score" : 9,
 		"color" :"100, 207, 159"
 	}
 	,
 	{
-		"name" : "Web Dev",
+		"name" : "Web Dev, HTML5, Canvas",
 		"score" : 9,
 		"color" :"131, 113, 93"
 	}
 	,
 	{
-		"name" : "HTML5, Canvas",
-		"score" : 8.8,
-		"color" :"199, 197, 55"
-	}
-	,
-	{
 		"name" : "CSS3, LESS, SASS, Bootstrap",
-		"score" : 8.5,
+		"score" : 8,
 		"color" :"199, 129, 97"
 	}
 	,	
@@ -45,26 +39,26 @@ window.skillsData = [
 	,
 	{
 		"name" : "Flex, ActionScript",
-		"score" : 7.8,
+		"score" : 7,
 		"color" :"90, 251, 157"
 	}
 	,
 	{
 		"name" : "Git, GitHub, Stash",
-		"score" : 7.5,
+		"score" : 7,
 		"color" :"209, 170, 240"
 	}
 	,	
 	{
 		"name" : "Mobile Dev, PhoneGap, Responsive Design",
-		"score" : 7.5,
+		"score" : 8,
 		"color" :"52, 106, 170"
 	}
 	,	
 	{
 		"name" : "Node.JS, Grunt, Bower, Karma",
-		"score" : 7.5,
-		"color" :"185, 24, 60"
+		"score" : 7,
+		"color" :"223, 72, 105"
 	}
 	,
 	{
@@ -75,7 +69,7 @@ window.skillsData = [
 	,
 	{
 		"name" : "No SQL, MongoDB",
-		"score" : 6.5,
+		"score" : 6,
 		"color" :"197, 230, 117"
 	}
 	,
@@ -83,6 +77,12 @@ window.skillsData = [
 		"name" : "Ruby on Rails",
 		"score" : 5,
 		"color" :"186, 116, 92"
+	}
+	,
+	{
+		"name" : "Juggling Chainsaws",
+		"score" : 3,
+		"color" :"177, 160, 218"
 	}
 ];
 

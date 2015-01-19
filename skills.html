@@ -8,11 +8,13 @@
   	<div class="skillBarWrapper">
 
       <div class="scale">
-        <div class="scaleunit" ng-repeat="unit in dataService.scale">{{unit}}</div>
+        <div ng-repeat="unit in dataService.scale" class="scaleunit">
+          <div ng-class="dataService.currentMarker == unit ? 'scaleUnitLabelSelected' : 'scaleUnitLabel'">{{unit}}</div>
+        </div>
       </div>
 
   		<div class="skillBarEachWrapper" ng-repeat="skill in dataService.skills | orderBy:predicate">
-        <div class="skillBar" ng-style="generateBarStyle()">
+        <div class="skillBar" ng-style="generateBarStyle()" ng-mouseover="dataService.currentMarker = skill.score" ng-mouseout="dataService.currentMarker = null">
         	<span class="skillLabel">{{skill.name}}</span>
         </div>
     </div>
