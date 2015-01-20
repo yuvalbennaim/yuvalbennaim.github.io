@@ -128,8 +128,10 @@
 
   function ResumeCtrl($scope, $injector, $http, $timeout, dataService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
+    $scope.predicate = '-date_to';
 
     $scope.init = function() {
+      dataService.jobs = window.jobData;
     }
   };
 

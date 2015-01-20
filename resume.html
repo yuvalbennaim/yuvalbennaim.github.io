@@ -1,5 +1,39 @@
 <div ng-controller="ResumeCtrl" ng-init="init()">
-  Resume...
+
+	<div class="contentheader">
+    Employment History (UNDER DEVELOPMENT)
+  </div>
+
+  <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
+  	<div class="jobOuterWrapper">
+
+  		<div class="jobWrapper" ng-repeat="job in dataService.jobs | orderBy:predicate">
+
+        <table class="jobsTable">
+          <tr>
+            <td class="jobImage" rowspan="5"><img class="jobImage" ng-src="{{job.logo}}"></td>
+            <td class="jobCompany" colspan="2">{{job.company}}</td>
+          </tr>
+          <tr>
+            <td class="jobLabel">Position:</td>
+            <td class="jobValue">{{job.position}}</td>
+          </tr>
+          <tr>
+            <td class="jobLabel">From:</td>
+            <td class="jobValue">{{job.date_from}}</td>
+          </tr>
+          <tr>
+            <td class="jobLabel">To::</td>
+            <td class="jobValue">{{job.date_to}}</td
+            </tr>
+          <tr>
+            <td class="jobLabel">Description:</td>
+            <td class="jobValue">{{job.detail}}</td>
+          </tr>
+        </table>
+
+    </div>
+  </div>	
 </div>
 
 

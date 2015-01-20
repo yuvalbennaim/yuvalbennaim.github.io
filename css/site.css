@@ -1,7 +1,7 @@
 
   BODY {
     background-color: #000;
-    font-family: 'Sonsie One', cursive, monospace;
+    font-family: sans-serif;
     overflow: hidden;
   }
 
@@ -9,7 +9,6 @@
     color: #fff;
     text-decoration: initial;
     cursor: pointer;
-
   }
 
   A:hover, .link:hover {
@@ -33,6 +32,7 @@
   }
 
   .header {
+    font-family: 'Sonsie One', cursive, monospace;
     position: fixed;
     left: 20px;
     right: 20px;
@@ -44,6 +44,7 @@
   }
 
   .subheader {
+    font-family: 'Sonsie One', cursive, monospace;
     position: fixed;
     left: 20px;
     right: 20px;
@@ -96,6 +97,7 @@
     text-shadow: 2px 2px 5px #000000;
     opacity: .7;
     text-align: center;
+    font-family: 'Sonsie One', cursive, monospace;
   }
 
   .searchBox {
@@ -103,6 +105,7 @@
   }
 
   .contentheader {
+        font-family: 'Sonsie One', cursive, monospace;
     padding: 10px;
     top: 20px;
     left: 20px;
@@ -114,6 +117,7 @@
   }
 
   .backButton {
+    font-family: 'Sonsie One', cursive, monospace;
     position: fixed;
     top: 2em;
     left: 2em;
@@ -309,6 +313,46 @@
   opacity: .6;
 }
 
+.jobOuterWrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px;
+  font-weight: normal;
+  border-radius: 10px;
+}
+
+.jobWrapper {
+  display: block;
+  border: 1px solid rgb(179, 179, 179);
+  background-color: #fff;
+  text-align: left;
+  margin-bottom: 10px;
+  opacity: .5;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.jobsTable {
+  width:100%; 
+}
+
+.jobImage {
+  padding: 20px;
+  width:50px;
+  height:50px;
+}
+
+.jobCompany {
+  font-weight: bold;
+}
+
+.jobValue {
+  width:100%;
+}
+
+.jobLabel {
+  font-weight: bold;
+}
 
  
 .view-animate-forward.ng-enter {

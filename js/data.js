@@ -1,7 +1,7 @@
 
 
 window.skillsData = [
-{
+	{
 		"name" : "Creativity",
 		"score" : 10,
 		"color" :"200, 119, 144"
@@ -74,18 +74,82 @@ window.skillsData = [
 	}
 	,
 	{
+		"name" : "Graphics, Photoshop, UI/UX",
+		"score" : 8,
+		"color" :"186, 92,116"
+	}
+	,
+	{
 		"name" : "Ruby on Rails",
 		"score" : 5,
 		"color" :"186, 116, 92"
 	}
-	,
-	{
-		"name" : "Juggling Chainsaws",
-		"score" : 3,
-		"color" :"177, 160, 218"
-	}
 ];
 
 window.jobData = [
+	{
+		"company" : "Aetna / iTriage",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/itriage.jpg",
+		"details" :"At SErena I built...",
+	},
+	{
+		"company" : "Oppenheimer Gunds Inc.",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/ofi.png",
+		"details" :"At SErena I built...",
+	},	
+	{
+		"company" : "Pearson eCollege (Contract)",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/pearson.jpg",
+		"details" :"At SErena I built...",
+	},	
+	{
+		"company" : "Click Fox",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/clickfox.png",
+		"details" :"At SErena I built...",
+	},
+	{
+		"company" : "Serena Software",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/serena.jpg",
+		"details" :"At SErena I built...",
+	},
+	{
+		"company" : "CarsDirect.com",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/carsdirect.png",
+		"details" :"At SErena I built...",
+	},
+	{
+		"company" : "ModaCAD",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/modacad.jpg",
+		"details" :"At SErena I built...",
+	},
+	{
+		"company" : "Qubix Animation",
+		"date_from" : "4/2001",
+		"date_to" : "6/2012",
+		"position" : "Sr Software Developer",
+		"logo" :"images/qubix.png",
+		"details" :"At SErena I built...",
+	},
 ];
 
