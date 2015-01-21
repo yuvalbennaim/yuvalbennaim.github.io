@@ -319,17 +319,21 @@
   padding: 20px;
   font-weight: normal;
   border-radius: 10px;
+  opacity: .75;
+  background-color: rgba(179, 179, 179, 0.61);
 }
 
 .jobWrapper {
   display: block;
-  border: 1px solid rgb(179, 179, 179);
   background-color: #fff;
   text-align: left;
   margin-bottom: 10px;
-  opacity: .5;
+  opacity: .75;
   border-radius: 10px;
   padding: 10px;
+  font-size: .9em;
+  font-family: sans-serif;
+  border: 5px solid rgb(77, 77, 77);
 }
 
 .jobsTable {
@@ -337,21 +341,34 @@
 }
 
 .jobImage {
-  padding: 20px;
-  width:50px;
-  height:50px;
+  padding-right: 10px;
+  width: 80px;
+  height: 80px;
+  vertical-align: top;
 }
 
 .jobCompany {
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 1.2em;
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 5px solid rgba(211, 211, 211, 1);
 }
 
 .jobValue {
-  width:100%;
+  vertical-align: top;
+  padding: 10px;
 }
 
 .jobLabel {
-  font-weight: bold;
+  vertical-align: top;
+  padding: 10px;
+}
+
+.jobValueLast {
+  vertical-align: top;
+  width: 100%;
+  padding: 10px;
 }
 
  

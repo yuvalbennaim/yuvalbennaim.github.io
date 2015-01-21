@@ -12,23 +12,21 @@
         <table class="jobsTable">
           <tr>
             <td class="jobImage" rowspan="5"><img class="jobImage" ng-src="{{job.logo}}"></td>
-            <td class="jobCompany" colspan="2">{{job.company}}</td>
+            <td class="jobCompany" colspan="5">{{job.company}}</td>
           </tr>
           <tr>
             <td class="jobLabel">Position:</td>
-            <td class="jobValue">{{job.position}}</td>
+            <td class="jobValue" colspan="4">{{job.position}}</td>
           </tr>
           <tr>
             <td class="jobLabel">From:</td>
-            <td class="jobValue">{{job.date_from}}</td>
-          </tr>
-          <tr>
-            <td class="jobLabel">To::</td>
-            <td class="jobValue">{{job.date_to}}</td
+            <td class="jobValue">{{job.date_from | date:'MM/yyyy'}}</td>
+            <td class="jobLabel">To:</td>
+            <td class="jobValueLast">{{job.date_to | date:'MM/yyyy'}}</td
             </tr>
           <tr>
             <td class="jobLabel">Description:</td>
-            <td class="jobValue">{{job.detail}}</td>
+            <td class="jobValue" colspan="5">{{job.detail}}</td>
           </tr>
         </table>
 
