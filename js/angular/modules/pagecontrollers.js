@@ -39,7 +39,7 @@
   function RouteController($rootScope, $scope, $location, $timeout, dataService) {
     $scope.dataService = dataService;
     $scope.dataService.previousPage = "";
-    $scope.dataService.currentPage = "";
+    $scope.dataService.currentPage = null;
    
     $scope.$on('$locationChangeStart', function(event, next, current) { 
       var path = $location.path();

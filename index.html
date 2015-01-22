@@ -20,7 +20,7 @@
     <title>Yuvalbennaim.GitHub.io</title>
   </head>
 
-  <body ng-app="AppModule" ng-controller="RouteController">
+  <body ng-app="AppModule" ng-controller="RouteController" class="main">
     <yb-grid ng-show="dataService.showGrid"></yb-grid>
 
     <yb-bubbles count="25" animate="dataService.animateBubbles" dimmer="dataService.viewShowing" ngx-click="toggleContinue()"></yb-bubbles>
@@ -36,7 +36,7 @@
       <yb-loading width="125" height="125" show="dataService.pageLoading" />
     </div>
 
-     <div class="backButton" ng-show="dataService.currentPage != 'home'">
+     <div class="backButton" ng-show="dataService.currentPage != undefined && dataService.currentPage != 'home'">
       <a ng-click="goBack()">&lt;&nbsp;Back</a>
     </div>
 

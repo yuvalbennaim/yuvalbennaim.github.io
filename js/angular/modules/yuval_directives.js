@@ -43,9 +43,11 @@ yuvalsDirectives.directive("ybGrid", function() {
       $scope.init = function() {
         $timeout($scope.setCanvasDimensions);
         
-        $(window).resize(function() {
-          $scope.setCanvasDimensions();
-        });       
+        if($scope.height == null) {
+          $(window).resize(function() {
+            $scope.setCanvasDimensions();
+          }); 
+        }      
       };
       
       $scope.setCanvasDimensions = function() {
@@ -53,9 +55,12 @@ yuvalsDirectives.directive("ybGrid", function() {
           $scope.canvas =  $scope.element.find('canvas')[0];
         }
         
-        $scope.canvas.width = window.innerWidth;
-        $scope.canvas.height = window.innerHeight;
-        //console.log("resize " + $scope.canvas.width + ":" + $scope.canvas.height);
+        if($scope.height == null) {
+          $scope.canvas.width = window.innerWidth;
+          $scope.canvas.height = window.innerHeight;
+          console.log("resize " + $scope.canvas.width + ":" + $scope.canvas.height);
+        }
+
         $scope.drawGrid();
       }
       
@@ -251,6 +256,103 @@ yuvalsDirectives.directive("ybBubbles", function() {
           $scope.ctx.clearRect(0, 0, $scope.w, $scope.h);          
           $scope.drawBubbles();
           $timeout($scope.draw, 50);
+        }
+      }
+    }
+  }
+});
+
+
+yuvalsDirectives.directive("ybHeartRate", function() {
+  return {
+    replace: false,
+    restrict: "EA",
+    template: '<canvas ng-init="init()" width="{{width}}" height="{{height}}"/>',
+
+    scope: {
+      width: "@width",
+      height: "@height",
+      /*majorLineColor: "@majorLineColor",
+      minorLineColor: "@minorLineColor",
+      spacing: "@spacing"*/
+    },
+
+    link: function($scope, element, attrs) {
+      $scope.element = element;
+      $scope.attrs = attrs;
+      $scope.majorLineColor = "#999";
+      $scope.minorLineColor = "#ddd";
+      $scope.gridAlpha = .5;
+      $scope.canvas =  $scope.element.find('canvas')[0];
+      $scope.drawGridDelayed();
+    },
+
+    controller: function($scope, $timeout) {
+
+      $scope.drawGridDelayed = function() {
+        $timeout($scope.drawGrid);
+      }
+
+      $scope.drawGrid = function() {
+        if($scope.canvas != undefined) {
+          var ctx = $scope.canvas.getContext("2d");
+          var w = $scope.canvas.width;
+          var h = $scope.canvas.height;
+          var x = 0.5;
+          var y = 0.5; 
+          var spacing = 10;
+          var clr;
+          var hLines = h / spacing;
+          var vLines = w / spacing;
+          var center = {"x" : w/2, "y" : h/2};
+
+          ctx.clearRect(0, 0, w, h);
+          ctx.strokeStyle = $scope.minorLineColor;
+          ctx.rect(0, 0, w, h);
+          ctx.stroke();
+
+          ctx.lineWidth = 1;
+          ctx.globalAlpha = $scope.gridAlpha;
+          
+          //draw the vertical lines
+          for(var v = 0; v < vLines; v++) {
+            if(v > 0) {
+              if(v % 10 == 0) {
+                clr = $scope.majorLineColor;
+              }
+              else {
+                clr = $scope.minorLineColor;
+              }
+              
+              ctx.beginPath();
+              ctx.moveTo(x, 0);
+              ctx.lineTo(x, h);
+              ctx.strokeStyle = clr;
+              ctx.stroke();
+            }
+
+            x += spacing;
+          }
+          
+          //draw the horizontal lines
+          for(var h = 0; h < hLines; h++) {
+            if(h > 0) {
+              if(h % 10 == 0) {
+                clr = $scope.majorLineColor;
+              }
+              else {
+                clr = $scope.minorLineColor;
+              }
+              
+              ctx.beginPath();
+              ctx.moveTo(0, y);
+              ctx.lineTo(w, y);
+              ctx.strokeStyle = clr;
+              ctx.stroke();
+            }
+
+            y += spacing;
+          }
         }
       }
     }

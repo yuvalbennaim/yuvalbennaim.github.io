@@ -1,5 +1,5 @@
 
-  BODY {
+  BODY.main {
     background-color: #000;
     font-family: sans-serif;
     overflow: hidden;
@@ -445,12 +445,13 @@
 
 
 
-
-
-
  @media screen and (max-width: 900px) {
     .header {
        font-size: 2em;
+    }
+
+    .backButton {
+      display: none;
     }
   }
 

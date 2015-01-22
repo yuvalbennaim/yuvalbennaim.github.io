@@ -4,11 +4,7 @@
     {{dataService.selected.name}}
   </div>
 
-  <!-- <div class="contentheadernav">
-    <a ng-click="backToPortfolio()">&lt;Back</a>
-  </div> -->
-
-  <div>
+  <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
     <img class="itemImg" ng-src="{{dataService.selected.download_url}}" /> 
   </div>
 	
