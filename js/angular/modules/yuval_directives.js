@@ -263,15 +263,16 @@ yuvalsDirectives.directive("ybBubbles", function() {
 });
 
 
+
+
+
 yuvalsDirectives.directive("ybHeartRate", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<canvas ng-init="init()" width="{{width}}" height="{{height}}"/>',
+    template: '<canvas ng-init="init()"/>',
 
     scope: {
-      width: "@width",
-      height: "@height",
       /*majorLineColor: "@majorLineColor",
       minorLineColor: "@minorLineColor",
       spacing: "@spacing"*/
@@ -280,34 +281,67 @@ yuvalsDirectives.directive("ybHeartRate", function() {
     link: function($scope, element, attrs) {
       $scope.element = element;
       $scope.attrs = attrs;
-      $scope.majorLineColor = "#999";
-      $scope.minorLineColor = "#ddd";
-      $scope.gridAlpha = .5;
       $scope.canvas =  $scope.element.find('canvas')[0];
-      $scope.drawGridDelayed();
+
+      $scope.graphMajorLineColor = "#999";
+      $scope.graphMinorLineColor = "#ddd";
+      $scope.lineAlpha = .5;
+      $scope.lineWidth = 5;
+      $scope.lineColor = 'blue';
+      $scope.gridAlpha = .5;
+
+      $scope.animating = false;
+      $scope.interval = 250;
+      $scope.spacing = 10;
+      $scope.points = [];
     },
 
     controller: function($scope, $timeout) {
 
-      $scope.drawGridDelayed = function() {
-        $timeout($scope.drawGrid);
+      $scope.init = function() {
+        $timeout(function() {
+          $scope.setDimensions();
+        });
+
+        $(window).resize(function() {
+          $scope.setDimensions();
+        }); 
+      }
+
+      $scope.generateBeat = function() {
+        $scope.points.push(new BeatPoint());
+      }
+
+      $scope.resetBeat = function() {
+        $scope.points = [];
+        $scope.drawBeat();
+      }
+
+      $scope.setDimensions = function() {
+        $scope.w = $scope.element.width();
+        $scope.h = $scope.element.height();
+        $scope.canvas.width = $scope.w;
+        $scope.canvas.height = $scope.h;
+        //console.log("drawGrid " + $scope.w + " :" + $scope.h);
+        $scope.drawGrid();
+        $scope.resetBeat();
       }
 
       $scope.drawGrid = function() {
         if($scope.canvas != undefined) {
-          var ctx = $scope.canvas.getContext("2d");
-          var w = $scope.canvas.width;
-          var h = $scope.canvas.height;
+          var ctx = $scope.ctx = $scope.canvas.getContext("2d");
+          var w = $scope.w;
+          var h = $scope.h;
           var x = 0.5;
           var y = 0.5; 
           var spacing = 10;
           var clr;
           var hLines = h / spacing;
           var vLines = w / spacing;
-          var center = {"x" : w/2, "y" : h/2};
+          $scope.center = {"x" : w/2, "y" : h/2};
 
           ctx.clearRect(0, 0, w, h);
-          ctx.strokeStyle = $scope.minorLineColor;
+          ctx.strokeStyle = $scope.graphMinorLineColor;
           ctx.rect(0, 0, w, h);
           ctx.stroke();
 
@@ -318,10 +352,10 @@ yuvalsDirectives.directive("ybHeartRate", function() {
           for(var v = 0; v < vLines; v++) {
             if(v > 0) {
               if(v % 10 == 0) {
-                clr = $scope.majorLineColor;
+                clr = $scope.graphMajorLineColor;
               }
               else {
-                clr = $scope.minorLineColor;
+                clr = $scope.graphMinorLineColor;
               }
               
               ctx.beginPath();
@@ -338,10 +372,10 @@ yuvalsDirectives.directive("ybHeartRate", function() {
           for(var h = 0; h < hLines; h++) {
             if(h > 0) {
               if(h % 10 == 0) {
-                clr = $scope.majorLineColor;
+                clr = $scope.graphMajorLineColor;
               }
               else {
-                clr = $scope.minorLineColor;
+                clr = $scope.graphMinorLineColor;
               }
               
               ctx.beginPath();
@@ -353,6 +387,53 @@ yuvalsDirectives.directive("ybHeartRate", function() {
 
             y += spacing;
           }
+        }
+      }
+
+      $scope.drawBeat = function() {
+        if($scope.canvas != undefined) {
+          var ctx = $scope.ctx;
+          var w = $scope.w;
+          var h = $scope.h;
+          var c = $scope.center;
+          var x = 0.5;
+          var y = 0.5; 
+          var clr;
+
+          ctx.globalAlpha = $scope.lineAlpha;
+          ctx.lineWidth = $scope.lineWidth;
+          ctx.strokeStyle = $scope.lineColor;
+
+          ctx.beginPath();
+          ctx.moveTo(100, 20);
+
+          ctx.lineTo(200, 160);
+          ctx.quadraticCurveTo(230, 200, 250, 120);
+          ctx.bezierCurveTo(290, -40, 300, 200, 400, 150);
+          ctx.lineTo(500, 90);
+
+          ctx.stroke();
+
+         for(var p = 0; p < $scope.points.length; p++) {
+         }
+          
+          //draw the vertical lines
+          // for(var p = 0; p < points.length; p++) {
+          //   clr = $scope.lineColor;
+
+          //   ctx.beginPath();
+          //   ctx.moveTo(x, 0);
+          //   ctx.lineTo(x, h);
+          //   ctx.strokeStyle = clr;
+          //   ctx.stroke();
+          //   }
+
+          //   x += spacing;
+          // }
+        }
+        
+        if($scope.animating) {  
+          $timeout($scope.drawBeat, $scope.interval);
         }
       }
     }

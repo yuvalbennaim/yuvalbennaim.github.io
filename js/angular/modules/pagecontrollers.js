@@ -139,10 +139,13 @@
   ///////////////////////  RESUME CONTROLLER //////////////////////////////////////
   
 
-  function SkillsCtrl($scope, $injector, $http, $timeout, dataService, helperService) {
+  function SkillsCtrl($scope, $injector, $http, $timeout, dataService) {
     $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
     dataService.scale = [1,2,3,4,5,6,7,8,9,10];
     $scope.predicate = '-score';
+
+    var helperService = $injector.get('helperService');
+    var randColor = helperService.generateRandomColor();
 
     $scope.init = function() {
       dataService.skills = window.skillsData;
