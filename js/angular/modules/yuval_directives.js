@@ -192,7 +192,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
           this.y = parseInt(Math.random() * $scope.h);
           var maxer = Math.max($scope.w, $scope.h);
           this.radius = 1;
-          this.alpha = .15;
+          this.alpha = .25;
           this.vr = Math.max(2, parseInt(Math.random() * 10));
           this.maxRadius = Math.max(maxer/4, parseInt(Math.random() * maxer/2));
           this.frames = parseInt(this.maxRadius / this.vr);
@@ -292,7 +292,7 @@ yuvalsDirectives.directive("ybHeartRate", function() {
 
       $scope.animating = false;
       $scope.interval = 250;
-      $scope.spacing = 10;
+      $scope.spacing = 50;
       $scope.points = [];
     },
 
@@ -309,11 +309,17 @@ yuvalsDirectives.directive("ybHeartRate", function() {
       }
 
       $scope.generateBeat = function() {
-        $scope.points.push(new BeatPoint());
+        //$scope.points.push(new BeatPoint());
       }
 
       $scope.resetBeat = function() {
+        var num = $scope.w / $scope.spacing;
         $scope.points = [];
+
+        for (var i = 0; i < num; i++) {
+          $scope.points.push(parseInt(Math.random() * 50));
+        };
+
         $scope.drawBeat();
       }
 
@@ -396,40 +402,30 @@ yuvalsDirectives.directive("ybHeartRate", function() {
           var w = $scope.w;
           var h = $scope.h;
           var c = $scope.center;
-          var x = 0.5;
-          var y = 0.5; 
+          var x;
+          var y; 
           var clr;
+          var point;
 
           ctx.globalAlpha = $scope.lineAlpha;
           ctx.lineWidth = $scope.lineWidth;
           ctx.strokeStyle = $scope.lineColor;
 
           ctx.beginPath();
-          ctx.moveTo(100, 20);
+          ctx.moveTo(0, c.y);
 
-          ctx.lineTo(200, 160);
-          ctx.quadraticCurveTo(230, 200, 250, 120);
-          ctx.bezierCurveTo(290, -40, 300, 200, 400, 150);
-          ctx.lineTo(500, 90);
-
-          ctx.stroke();
-
-         for(var p = 0; p < $scope.points.length; p++) {
-         }
+           for(var p = 0; p < $scope.points.length; p++) {
+            point = $scope.points[p];
+            y = c.y + point; 
+            x = p * $scope.spacing;
+            cx = x;
+            cy = y;
+            //ctx.lineTo(x, y);
+            ctx.quadraticCurveTo(cx, cy, x, x);
+            // ctx.bezierCurveTo(290, -40, 300, 200, 400, 150);
+           }
           
-          //draw the vertical lines
-          // for(var p = 0; p < points.length; p++) {
-          //   clr = $scope.lineColor;
-
-          //   ctx.beginPath();
-          //   ctx.moveTo(x, 0);
-          //   ctx.lineTo(x, h);
-          //   ctx.strokeStyle = clr;
-          //   ctx.stroke();
-          //   }
-
-          //   x += spacing;
-          // }
+          ctx.stroke();
         }
         
         if($scope.animating) {  
