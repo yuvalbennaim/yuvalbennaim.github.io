@@ -88,11 +88,11 @@ window.skillsData = [
 
 window.jobData = [
   {
-      "company": "Aetna / iTriage",
+      "company": "Comcast",
       "date_from": "2015-01-05",
       "date_to": "Current",
       "position": "Sr Software Developer",
-      "logo": "images/itriage.jpg",
+      "logo": "images/comcst_logo_peacock.jpg",
       "detail": "Angular.JS development"
   },
   {
@@ -104,7 +104,7 @@ window.jobData = [
       "detail": "Web and Mobile Development using HTML5, JavaScript, Angular.JS, JQuery, CSS3, PhoneGap, MongoDB, Node.js and Ruby on Rails.\n\nArchitected and led the development effort of a major product which allows financial Advisers to create and manage their clients investment portfolios."
   },
   {
-      "company": "Pearson eCollege (Contract)",
+      "company": "Pearson eCollege",
       "date_from": "2013-01-01",
       "date_to": "2013-06-01",
       "position": "Sr Software Developer",
