@@ -21,9 +21,9 @@
   </head>
 
   <body ng-app="AppModule" ng-controller="RouteController" class="main">
-    <yb-grid ng-show="dataService.showGrid"></yb-grid>
+    <yb-grid ng-show="dataService.showGrid" major="#444444" minor="#222222" alpha="dataService.gridAlpha"></yb-grid>
 
-    <yb-bubbles count="25" animate="dataService.animateBubbles" dimmer="dataService.viewShowing" ngx-click="toggleContinue()"></yb-bubbles>
+    <yb-bubbles count="25" alpha="dataService.bubblesAlpha" animate="dataService.animateBubbles" dimmer="dataService.viewShowing"></yb-bubbles>
 
 
     <div class="header" ngx-hide="dataService.viewShowing">
@@ -41,10 +41,30 @@
     </div>
 
     <div class="stopAnimating">
-      <a ng-click="stopAnimation()">
-        <span ng-show="dataService.animateBubbles">Pause</span>
-        <span ng-hide="dataService.animateBubbles">Play</span>
-        &nbsp;Animation</a>
+      <a ng-click="toggleSettings()">
+        <span ng-show="dataService.showSettings">Hide</span>
+        &nbsp;Settings
+      </a>
+    </div>
+
+    <div class="settings" ng-show="dataService.showSettings">
+      <div class="settingRow">
+        <a ng-click="stopAnimation()">
+          <span ng-show="dataService.animateBubbles">Pause</span>
+          <span ng-hide="dataService.animateBubbles">Play</span>
+          &nbsp;Animation
+        </a>
+      </div>
+
+      <div class="settingRow">
+        <label>Grid Alpha</label>
+        <input type=range min="0" max="1" step=".1" ng-model="dataService.gridAlpha">{{dataService.gridAlpha}}
+      </div>
+
+      <div class="settingRow">
+        <label>Bubbles Alpha</label>
+        <input type=range min="0" max="1" step=".1" ng-model="dataService.bubblesAlpha">{{dataService.bubblesAlpha}}
+      </div>
     </div>
 
     <div class="footer">

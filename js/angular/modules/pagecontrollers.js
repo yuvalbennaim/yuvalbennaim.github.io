@@ -18,6 +18,9 @@
     dataService.pageLoading = true;
     dataService.viewShowing = false;
     dataService.animateBubbles = true;
+    dataService.showSettings = false;
+    dataService.gridAlpha = .2;
+    dataService.bubblesAlpha = .2;
     dataService.transitionClass = "view-animate-forward";
     dataService.gitPath = "https://api.github.com/repos/yuvalbennaim/yuvalbennaim.github.io/contents/images/Portfolio";
     dataService.slides = [];
@@ -93,6 +96,10 @@
 
     $scope.stopAnimation = function() {
       dataService.animateBubbles = !dataService.animateBubbles;
+    }
+
+    $scope.toggleSettings = function() {
+      dataService.showSettings = !dataService.showSettings;
     }
 
     $scope.goBack = function() {

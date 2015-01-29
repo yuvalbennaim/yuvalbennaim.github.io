@@ -1,8 +1,12 @@
 
+  BODY {
+    overflow: hidden;
+    margin: 0;
+  }
+
   BODY.main {
     background-color: #000;
     font-family: sans-serif;
-    overflow: hidden;
   }
 
   A, .link {
@@ -71,6 +75,25 @@
 
   p::first-letter {
     font-size: 1.5em;
+  }
+
+  .settings {
+    position: fixed;
+    right: 0px;
+    bottom: 50px;
+    border: 1px solid rgba(29, 29, 29, 0.6);
+    background-color: black;
+    opacity: .8;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+    color: #eee;
+  }
+
+  .settingRow {
+
   }
 
 
