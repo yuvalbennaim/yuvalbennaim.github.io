@@ -422,7 +422,7 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
             ctx.save();
             var radians = helperService.degreesToRadians(angle);
             ctx.rotate(radians);
-            $scope.drawSlice(ctx, slice, r/2, 25, 30, $scope.offsetX, $scope.offsetY);
+            $scope.drawSlice(ctx, slice, r/2, 22, 30, $scope.offsetX, $scope.offsetY);
             angle += inc;
             ctx.restore();
           }
