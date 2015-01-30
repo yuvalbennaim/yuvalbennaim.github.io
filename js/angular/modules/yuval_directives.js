@@ -31,7 +31,7 @@ yuvalsDirectives.directive("ybGrid", function() {
       height: "@height",
       majorLineColor: "@major",
       minorLineColor: "@minor",
-      gridAlpha: "=alpha",
+      gridAlpha: "=?alpha",
     },
 
     link: function($scope, element, attrs) {
@@ -299,7 +299,7 @@ yuvalsDirectives.directive("ybPeacock", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<canvas ng-init="init()"/>',
+    template: '<canvas ng-init="init()" ng-click="toggleContinue()"/>',
 
     scope: {
       width: "@width",
@@ -311,6 +311,10 @@ yuvalsDirectives.directive("ybPeacock", function() {
       $scope.element = element;
       $scope.attrs = attrs;
       $scope.canvas = $scope.element.find('canvas')[0];
+      $scope.rotation = 0;
+      $scope.offsetX = 0;
+      $scope.offsetY = 0;
+      $scope.continue = true;
     },
 
     controller: function($scope, $timeout, helperService) {
@@ -339,7 +343,18 @@ yuvalsDirectives.directive("ybPeacock", function() {
         $scope.draw();
       }
 
+      $scope.toggleContinue = function() {
+        $scope.continue = !$scope.continue;
+
+        if($scope.continue) {
+          $scope.offsetX = 0;
+          $scope.offsetY = 0;
+          $scope.draw();
+        }
+      }
+
       $scope.initSlices = function() {
+        $scope.colors = ['yellow', 'orange', 'red', 'purple', 'blue', 'green'];
         $scope.slicesArr = [];
 
         if($scope.slices == undefined) {
@@ -347,28 +362,26 @@ yuvalsDirectives.directive("ybPeacock", function() {
         }
 
         for(var i = 0; i < $scope.slices; i++) {
-          $scope.slicesArr.push({"id" : "slice _" + i});
+          var slice = {"id" : "slice _" + i};
+          var c = i % $scope.colors.length
+          slice.color = $scope.colors[c];
+          $scope.slicesArr.push(slice);
         }
       }
 
-      $scope.drawSlice = function(ctx, size, thickness){
-        thickness = thickness || 4;        
-        //ctx.beginPath();
-
-        ctx.fillStyle = "rgb(" + helperService.generateRandomColor() + ")"; 
-        ctx.fillRect(0, 0, size, thickness);
-
-        // ctx.lineTo(thickness *-1, -10);
-        // ctx.lineTo(0, size * -1);
-        // ctx.lineTo(thickness,-10);
-        // ctx.lineTo(0,0);
-        // ctx.fill();
-        // ctx.stroke();
-        // ctx.closePath();
+      $scope.drawSlice = function(ctx, slice, length, thickness, bz, offsetX, offsetY) {   
+        ctx.beginPath();
+        ctx.moveTo(offsetX, offsetY);
+        ctx.lineTo(-thickness, length);
+        ctx.bezierCurveTo(-thickness+5, length+bz, thickness-5, length+bz, thickness, length);
+        ctx.lineTo(offsetX, offsetY);
+        ctx.closePath();
+        ctx.fillStyle = slice.color;
+        ctx.fill();
       }
 
       $scope.draw = function() {
-        if($scope.canvas != undefined) {
+        if($scope.canvas != undefined && $scope.continue == true) {
           var ctx = $scope.ctx = $scope.canvas.getContext("2d");
           var w = $scope.w;
           var h = $scope.h;
@@ -376,29 +389,36 @@ yuvalsDirectives.directive("ybPeacock", function() {
           $scope.center = {"x" : w/2, "y" : h/2};
 
           ctx.clearRect(0, 0, w, h);
-          ctx.strokeStyle = $scope.graphMinorLineColor;
 
-          ctx.strokeStyle = "#dd9999"; 
-          ctx.lineWidth = 3; 
-          ctx.beginPath();
+          //$scope.ctx.globalCompositeOperation = "source-over";
+          //$scope.ctx.fillStyle = "rgba(255, 255, 255, .1)";
+          //$scope.ctx.fillRect(0, 0, w, h);
 
-          ctx.rect(0, 0, w, h);
-          ctx.stroke(); 
+          ctx.save();
+          ctx.translate($scope.center.x,  $scope.center.y);          
+          ctx.rotate(helperService.degreesToRadians($scope.rotation));
 
           var angle = 0;
           var inc = 360 / $scope.slicesArr.length;
-
-          ctx.translate( $scope.center.x,  $scope.center.y);
 
           for(var i = 0; i < $scope.slicesArr.length; i++) {
             var slice = $scope.slicesArr[i];
             ctx.save();
             var radians = helperService.degreesToRadians(angle);
             ctx.rotate(radians);
-            $scope.drawSlice(ctx, r, 20);
+            $scope.drawSlice(ctx, slice, r/2, 20, 20, $scope.offsetX, $scope.offsetY);
             angle += inc;
             ctx.restore();
           }
+
+          if($scope.offsetY < r/4) {
+            $scope.offsetX += 1;
+            $scope.offsetY += 1;
+          }
+
+          $scope.rotation -= 1;
+          $timeout($scope.draw, 10);
+          ctx.restore();
         }
       }
     }
