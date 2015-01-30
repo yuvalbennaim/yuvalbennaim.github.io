@@ -295,7 +295,7 @@ yuvalsDirectives.directive("ybBubbles", function() {
 
 
 
-yuvalsDirectives.directive("ybPeacock", function() {
+yuvalsDirectives.directive("ybPeacockLoader", function() {
   return {
     replace: false,
     restrict: "EA",
@@ -315,6 +315,9 @@ yuvalsDirectives.directive("ybPeacock", function() {
       $scope.offsetX = 0;
       $scope.offsetY = 0;
       $scope.continue = true;
+      $scope.motionBlur = false;
+      $scope.opening = true;
+      $scope.drawShadow = true;
     },
 
     controller: function($scope, $timeout, helperService) {
@@ -340,7 +343,6 @@ yuvalsDirectives.directive("ybPeacock", function() {
         $scope.h = $scope.element.height();
         $scope.canvas.width = $scope.w;
         $scope.canvas.height = $scope.h;
-        $scope.draw();
       }
 
       $scope.toggleContinue = function() {
@@ -353,8 +355,12 @@ yuvalsDirectives.directive("ybPeacock", function() {
         }
       }
 
+      $scope.toggleShutterMode = function() {
+        $scope.opening = !$scope.opening;
+      }
+
       $scope.initSlices = function() {
-        $scope.colors = ['yellow', 'orange', 'red', 'purple', 'blue', 'green'];
+        $scope.colors = ['rgb(243, 187, 42)', 'rgb(236, 64, 40)', 'rgb(171, 31, 34)', 'rgb(106, 83, 173)', 'rgb(66, 151, 218)', 'rgb(119, 188, 72)'];
         $scope.slicesArr = [];
 
         if($scope.slices == undefined) {
@@ -377,6 +383,14 @@ yuvalsDirectives.directive("ybPeacock", function() {
         ctx.lineTo(offsetX, offsetY);
         ctx.closePath();
         ctx.fillStyle = slice.color;
+
+        if($scope.drawShadow) {
+          ctx.shadowColor = '#111';
+          ctx.shadowBlur = 25;
+          ctx.shadowOffsetX = 5;
+          ctx.shadowOffsetY = 5;
+        }
+
         ctx.fill();
       }
 
@@ -388,11 +402,13 @@ yuvalsDirectives.directive("ybPeacock", function() {
           var r = w/2;
           $scope.center = {"x" : w/2, "y" : h/2};
 
-          ctx.clearRect(0, 0, w, h);
-
-          //$scope.ctx.globalCompositeOperation = "source-over";
-          //$scope.ctx.fillStyle = "rgba(255, 255, 255, .1)";
-          //$scope.ctx.fillRect(0, 0, w, h);
+          if($scope.motionBlur) {
+            $scope.ctx.fillStyle = "rgba(255, 255, 255, .3)";
+            $scope.ctx.fillRect(0, 0, w, h);
+          }
+          else {
+            ctx.clearRect(0, 0, w, h);
+          }
 
           ctx.save();
           ctx.translate($scope.center.x,  $scope.center.y);          
@@ -406,14 +422,28 @@ yuvalsDirectives.directive("ybPeacock", function() {
             ctx.save();
             var radians = helperService.degreesToRadians(angle);
             ctx.rotate(radians);
-            $scope.drawSlice(ctx, slice, r/2, 20, 20, $scope.offsetX, $scope.offsetY);
+            $scope.drawSlice(ctx, slice, r/2, 25, 30, $scope.offsetX, $scope.offsetY);
             angle += inc;
             ctx.restore();
           }
 
-          if($scope.offsetY < r/4) {
-            $scope.offsetX += 1;
-            $scope.offsetY += 1;
+          if($scope.opening) {
+            if($scope.offsetY < r/4) {
+              $scope.offsetX += .2;
+              $scope.offsetY += .2;
+            }
+            else {
+              $scope.toggleShutterMode();
+            }
+          }
+          else {
+             if($scope.offsetY > 0) {
+              $scope.offsetX -= .2;
+              $scope.offsetY -= .2;
+            }
+            else {
+              $scope.toggleShutterMode();
+            }
           }
 
           $scope.rotation -= 1;
