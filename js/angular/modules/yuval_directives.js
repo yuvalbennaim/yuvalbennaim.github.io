@@ -349,7 +349,7 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
         });
 
         $scope.$watch('slices', function(newValue, oldValue) {
-          $scope.draw();
+          $scope.initSlices();
         });
 
         $scope.$watch('animate', function(newValue, oldValue) {
