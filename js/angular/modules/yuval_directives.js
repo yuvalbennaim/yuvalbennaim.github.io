@@ -332,6 +332,9 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
         {"name": "drawShadow", "displayName": "Render Shadow", "type": "boolean"},
         {"name": "motionBlur", "displayName": "Motion Blur", "type": "boolean"},
         {"name": "animate", "displayName": "Animate", "type": "boolean"},
+        {"name": "opening", "displayName": "Open / Close", "type": "boolean"},
+        {"name": "sliceCurveFactor", "displayName": "Slice Curve Factor", "type": "int"},
+        {"name": "slices", "displayName": "Slices", "type": "int"},
       ];
     },
 
@@ -354,8 +357,6 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
 
         $scope.$watch('animate', function(newValue, oldValue) {
           if($scope.animate) {
-            $scope.offsetX = 0;
-            $scope.offsetY = 0;
             $scope.draw();
           }
         });
@@ -450,7 +451,7 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
               $scope.offsetY += $scope.offsetIncrement*$scope.sliceRotator;
             }
             else {
-              $scope.toggleShutterMode();
+              //$scope.toggleShutterMode();
             }
           }
           else {
@@ -459,7 +460,7 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
               $scope.offsetY -= $scope.offsetIncrement*$scope.sliceRotator;
             }
             else {
-              $scope.toggleShutterMode();
+              //$scope.toggleShutterMode();
             }
           }
 
@@ -480,7 +481,7 @@ yuvalsDirectives.directive("ybSettingsControl", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<div style="position:fixed; right:10px; top:10px; width:400x; height: 300px;"><a style="color: #2A9EC8" ng-click="open = !open">Configure {{name}}</a><div style="width:400x; height: 300px;"><table style="width:100%; overflow:auto; background-color:#eee" ng-show="open"><tr><td colspan="2" style="background-color:#ddd">Edit Settings:</td></tr><tr ng-repeat="prop in settings"><td style="white-space: nowrap;">{{prop.displayName}}</td><td ng-show="prop.type == \'boolean\'" style="white-space: nowrap;"><input type="checkbox" ng-model="prop.value" ng-change="changeProperty()"></td></tr><table></div></div/>',
+    template: '<div style="position:fixed; right:10px; top:10px; width:400x; height: 300px;"><a style="color: #2A9EC8" ng-click="toggleOpen()">Configure {{name}}</a><div style="max-width: 400px; max-height: 300px; background-color: #eee; overflow: auto;"><table style="width:100%;padding: 10px;" ng-show="open"><tr><td colspan="2" style="background-color:#ddd">Edit Settings:</td></tr><tr ng-repeat="prop in props"><td style="white-space: nowrap;">{{prop.displayName}}</td><td ng-show="prop.type == \'boolean\'" style="white-space: nowrap;"><input type="checkbox" ng-model="prop.value" ng-change="changeProperty()"></td><td ng-show="prop.type == \'int\'" style="white-space: nowrap;"><input type="number" min="0" max="100" ng-model="prop.value" ng-change="changeProperty()"></td></tr><table></div></div/>',
 
     scope: {
       name: "@name",
@@ -489,26 +490,26 @@ yuvalsDirectives.directive("ybSettingsControl", function() {
 
     link: function($scope, element, attrs) {
       $scope.open = false;
-
-      $scope.$watch('props', function(newValue, oldValue) {
-        $scope.setup();
-      });    
+      $scope.$p = $scope.$parent;
     },
 
     controller: function($scope, $timeout) {
 
-      $scope.setup = function() {
-        $scope.settings = [];
-        var prop, pname, displayName, pval, type;
-        $scope.$p = $scope.$parent;
+      $scope.toggleOpen = function() {
+        $scope.open = !$scope.open;
 
+        if($scope.open) { 
+          $scope.refresh();//refresh state
+        }
+      }
+
+      $scope.refresh = function() {
         for(var p = 0; p < $scope.props.length; p++) {
           prop = $scope.props[p];
           pname = prop.name;
           displayName = prop.displayName;
           type = prop.type;
-          pval = $scope.$p[pname];
-          $scope.settings.push({"name": pname, "displayName": displayName, "value": pval, "type": type});
+          prop.value = $scope.$p[pname];
         }
       };
 
