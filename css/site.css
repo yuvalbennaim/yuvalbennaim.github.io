@@ -9,6 +9,11 @@
     font-family: sans-serif;
   }
 
+  BODY.comps {
+    background-color: #fff;
+    font-family: monospace;
+  }
+
   A, .link {
     color: #fff;
     text-decoration: initial;

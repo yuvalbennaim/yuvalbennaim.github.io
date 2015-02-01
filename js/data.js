@@ -44,8 +44,8 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "Git, GitHub, Stash",
-		"score" : 7,
+		"name" : "Git, Get, Got It !",
+		"score" : 8,
 		"color" :"209, 170, 240"
 	}
 	,	

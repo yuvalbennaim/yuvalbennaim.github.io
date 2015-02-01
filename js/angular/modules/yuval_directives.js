@@ -149,7 +149,6 @@ yuvalsDirectives.directive("ybGrid", function() {
 
 
 
-
 yuvalsDirectives.directive("ybBubbles", function() {
   return {
     replace: false,
@@ -299,7 +298,7 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<canvas ng-init="init()" ng-click="toggleContinue()"/>',
+    template: '<canvas ng-init="init()" ng-click="toggleContinue()"/><yb-settings-control name="Peacock" props="configurableProps"/>',
 
     scope: {
       width: "@width",
@@ -314,10 +313,26 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
       $scope.rotation = 0;
       $scope.offsetX = 0;
       $scope.offsetY = 0;
-      $scope.continue = true;
+      $scope.animate = true;
       $scope.motionBlur = false;
       $scope.opening = true;
+      $scope.drawRate = 10;
+      $scope.rotationIncrement = -1;
+      $scope.sliceRotator = 1;
       $scope.drawShadow = true;
+      $scope.sliceWidth = 22;
+      $scope.sliceHeight = 100;
+      $scope.sliceCurveFactor = 30;
+      $scope.offsetIncrement = .2;
+      $scope.shadowBlur = 25;
+      $scope.shadowOffset = 5;
+      $scope.shadowColor = '#111';
+
+      $scope.configurableProps = [ //used for the  configuration control
+        {"name": "drawShadow", "displayName": "Render Shadow", "type": "boolean"},
+        {"name": "motionBlur", "displayName": "Motion Blur", "type": "boolean"},
+        {"name": "animate", "displayName": "Animate", "type": "boolean"},
+      ];
     },
 
     controller: function($scope, $timeout, helperService) {
@@ -336,6 +351,14 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
         $scope.$watch('slices', function(newValue, oldValue) {
           $scope.draw();
         });
+
+        $scope.$watch('animate', function(newValue, oldValue) {
+          if($scope.animate) {
+            $scope.offsetX = 0;
+            $scope.offsetY = 0;
+            $scope.draw();
+          }
+        });
       }
 
       $scope.setDimensions = function() {
@@ -346,13 +369,7 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
       }
 
       $scope.toggleContinue = function() {
-        $scope.continue = !$scope.continue;
-
-        if($scope.continue) {
-          $scope.offsetX = 0;
-          $scope.offsetY = 0;
-          $scope.draw();
-        }
+        $scope.animate = !$scope.animate;
       }
 
       $scope.toggleShutterMode = function() {
@@ -385,17 +402,17 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
         ctx.fillStyle = slice.color;
 
         if($scope.drawShadow) {
-          ctx.shadowColor = '#111';
-          ctx.shadowBlur = 25;
-          ctx.shadowOffsetX = 5;
-          ctx.shadowOffsetY = 5;
+          ctx.shadowColor = $scope.shadowColor;
+          ctx.shadowBlur = $scope.shadowBlur;
+          ctx.shadowOffsetX = $scope.shadowOffset;
+          ctx.shadowOffsetY = $scope.shadowOffset;
         }
 
         ctx.fill();
       }
 
       $scope.draw = function() {
-        if($scope.canvas != undefined && $scope.continue == true) {
+        if($scope.canvas != undefined && $scope.animate == true) {
           var ctx = $scope.ctx = $scope.canvas.getContext("2d");
           var w = $scope.w;
           var h = $scope.h;
@@ -422,15 +439,15 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
             ctx.save();
             var radians = helperService.degreesToRadians(angle);
             ctx.rotate(radians);
-            $scope.drawSlice(ctx, slice, r/2, 22, 30, $scope.offsetX, $scope.offsetY);
-            angle += inc;
+            $scope.drawSlice(ctx, slice, $scope.sliceHeight, $scope.sliceWidth, $scope.sliceCurveFactor, $scope.offsetX, $scope.offsetY);
+            angle -= inc;
             ctx.restore();
           }
 
           if($scope.opening) {
-            if($scope.offsetY < r/4) {
-              $scope.offsetX += .2;
-              $scope.offsetY += .2;
+            if($scope.offsetY < $scope.sliceHeight/2) {
+              $scope.offsetX += $scope.offsetIncrement*$scope.sliceRotator;
+              $scope.offsetY += $scope.offsetIncrement*$scope.sliceRotator;
             }
             else {
               $scope.toggleShutterMode();
@@ -438,20 +455,79 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
           }
           else {
              if($scope.offsetY > 0) {
-              $scope.offsetX -= .2;
-              $scope.offsetY -= .2;
+              $scope.offsetX -= $scope.offsetIncrement*$scope.sliceRotator;
+              $scope.offsetY -= $scope.offsetIncrement*$scope.sliceRotator;
             }
             else {
               $scope.toggleShutterMode();
             }
           }
 
-          $scope.rotation -= 1;
-          $timeout($scope.draw, 10);
+          $scope.rotation += $scope.rotationIncrement;
+          $timeout($scope.draw, $scope.drawRate);
           ctx.restore();
         }
       }
     }
   }
 });
+
+
+
+
+
+yuvalsDirectives.directive("ybSettingsControl", function() {
+  return {
+    replace: false,
+    restrict: "EA",
+    template: '<div style="position:fixed; right:10px; top:10px; width:400x; height: 300px;"><a style="color: #2A9EC8" ng-click="open = !open">Configure {{name}}</a><div style="width:400x; height: 300px;"><table style="width:100%; overflow:auto; background-color:#eee" ng-show="open"><tr><td colspan="2" style="background-color:#ddd">Edit Settings:</td></tr><tr ng-repeat="prop in settings"><td style="white-space: nowrap;">{{prop.displayName}}</td><td ng-show="prop.type == \'boolean\'" style="white-space: nowrap;"><input type="checkbox" ng-model="prop.value" ng-change="changeProperty()"></td></tr><table></div></div/>',
+
+    scope: {
+      name: "@name",
+      props: "=props",
+    },
+
+    link: function($scope, element, attrs) {
+      $scope.open = false;
+
+      $scope.$watch('props', function(newValue, oldValue) {
+        $scope.setup();
+      });    
+    },
+
+    controller: function($scope, $timeout) {
+
+      $scope.setup = function() {
+        $scope.settings = [];
+        var prop, pname, displayName, pval, type;
+        $scope.$p = $scope.$parent;
+
+        for(var p = 0; p < $scope.props.length; p++) {
+          prop = $scope.props[p];
+          pname = prop.name;
+          displayName = prop.displayName;
+          type = prop.type;
+          pval = $scope.$p[pname];
+          $scope.settings.push({"name": pname, "displayName": displayName, "value": pval, "type": type});
+        }
+      };
+
+      $scope.changeProperty = function() {
+        var pname = this.prop.name;
+        var pval = this.prop.value;
+        console.log("changeProperty: " + pname + " to " + pval);
+        $scope.$p[pname] = pval;
+      }
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
 
