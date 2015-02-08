@@ -69,7 +69,7 @@ window.skillsData = [
 	,
 	{
 		"name" : "No SQL, MongoDB",
-		"score" : 6,
+		"score" : 7,
 		"color" :"197, 230, 117"
 	}
 	,
@@ -80,7 +80,7 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "Ruby on Rails",
+		"name" : "Ruby on Rails, C, C++, C#, Python",
 		"score" : 5,
 		"color" :"186, 116, 92"
 	}

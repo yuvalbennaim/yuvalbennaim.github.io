@@ -1,24 +1,5 @@
 
-yuvalsDirectives = angular.module('yuvalsDirectives', []);
-
-
-yuvalsDirectives.service('helperService', function() {
-    var helperService = {};
-    
-    helperService.generateRandomColor = function() {
-      var r = parseInt(Math.random() * 255);
-      var g = parseInt(Math.random() * 255);
-      var b = parseInt(Math.random() * 255);
-      return r + "," + g + "," + b;
-    }
-
-    helperService.degreesToRadians = function(degrees) {
-      return (Math.PI / 180) * degrees;
-    }
-    
-    return helperService;
-  });
-
+yuvalsDirectives = angular.module('yuvalsDirectives', ['helperModule']);
 
 yuvalsDirectives.directive("ybGrid", function() {
   return {
@@ -328,13 +309,17 @@ yuvalsDirectives.directive("ybPeacockLoader", function() {
       $scope.shadowOffset = 5;
       $scope.shadowColor = '#111';
 
-      $scope.configurableProps = [ //used for the  configuration control
+      $scope.configurableProps = [ //used for the configuration control
         {"name": "drawShadow", "displayName": "Render Shadow", "type": "boolean"},
         {"name": "motionBlur", "displayName": "Motion Blur", "type": "boolean"},
         {"name": "animate", "displayName": "Animate", "type": "boolean"},
         {"name": "opening", "displayName": "Open / Close", "type": "boolean"},
-        {"name": "sliceCurveFactor", "displayName": "Slice Curve Factor", "type": "int"},
-        {"name": "slices", "displayName": "Slices", "type": "int"},
+        {"name": "sliceCurveFactor", "displayName": "Slice Curve Factor", "type": "int", "min": "0", "max": "100", "inc": "1"},
+        {"name": "slices", "displayName": "Slices", "type": "int", "min": "-0", "max": "100", "inc": "1"},
+        {"name": "rotationIncrement", "displayName": "Rotation Increment", "type": "int", "min": "-5", "max": "5", "inc": "1"},
+        {"name": "sliceWidth", "displayName": "Slice Width", "type": "int", "min": "1", "max": "100", "inc": "1"},
+        {"name": "sliceHeight", "displayName": "Slice Height", "type": "int", "min": "1", "max": "100", "inc": "1"},
+        {"name": "offsetIncrement", "displayName": "Offset Increment", "type": "int", "min": "-1", "max": "1", "inc": ".1"},
       ];
     },
 
@@ -481,7 +466,7 @@ yuvalsDirectives.directive("ybSettingsControl", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<div style="position:fixed; right:10px; top:10px; width:400x; height: 300px;"><a style="color: #2A9EC8" ng-click="toggleOpen()">Configure {{name}}</a><div style="max-width: 400px; max-height: 300px; background-color: #eee; overflow: auto;"><table style="width:100%;padding: 10px;" ng-show="open"><tr><td colspan="2" style="background-color:#ddd">Edit Settings:</td></tr><tr ng-repeat="prop in props"><td style="white-space: nowrap;">{{prop.displayName}}</td><td ng-show="prop.type == \'boolean\'" style="white-space: nowrap;"><input type="checkbox" ng-model="prop.value" ng-change="changeProperty()"></td><td ng-show="prop.type == \'int\'" style="white-space: nowrap;"><input type="number" min="0" max="100" ng-model="prop.value" ng-change="changeProperty()"></td></tr><table></div></div/>',
+    template: '<div style="position:fixed; right:10px; top:10px; width:400x; height: 300px;"><a style="color: #2A9EC8" ng-click="toggleOpen()">Configure {{name}}</a><div style="max-width: 400px; max-height: 300px; background-color: #eee; overflow: auto;"><table style="width:100%;padding: 10px;" ng-show="open"><tr><td colspan="2" style="background-color:#ddd">Edit Settings:</td></tr><tr ng-repeat="prop in props"><td style="white-space: nowrap;">{{prop.displayName}}</td><td ng-show="prop.type == \'boolean\'" style="white-space: nowrap;"><input type="checkbox" ng-model="prop.value" ng-change="changeProperty()"></td><td ng-show="prop.type == \'int\'" style="white-space: nowrap;"><input type="number" min="{{prop.min}}" max="{{prop.max}}" step="{{prop.inc}}" ng-model="prop.value" ng-change="changeProperty()"></td></tr><table></div></div/>',
 
     scope: {
       name: "@name",
@@ -516,7 +501,7 @@ yuvalsDirectives.directive("ybSettingsControl", function() {
       $scope.changeProperty = function() {
         var pname = this.prop.name;
         var pval = this.prop.value;
-        console.log("changeProperty: " + pname + " to " + pval);
+        //console.log("changeProperty: " + pname + " to " + pval);
         $scope.$p[pname] = pval;
       }
     }
