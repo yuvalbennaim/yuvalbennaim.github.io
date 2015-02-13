@@ -1,0 +1,358 @@
+@font-face {
+  font-family: "Sarpanch";
+  src: url('Sarpanch-Black.ttf');
+}
+
+BODY {
+  background-color: #7593B0;
+  font-family: Sarpanch, fantasy;
+  overflow: hidden;
+  margin: 0;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;  /* for vertical scrollbars */
+  height: 1px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(152, 152, 152, 0.75);
+}
+
+.wrapper {  
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.loginHeader {
+  font-family: Sarpanch, fantasy;
+  text-align: center;
+}
+
+.loginTable {
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/comcast_trans.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 55%;
+}
+
+.form-signin {
+  color: rgb(161, 161, 161);
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px #000000;
+  opacity: .9;
+
+  .form-signin-heading,
+  .checkbox {
+    margin-bottom: 30px;
+  }
+
+  .checkbox {
+    font-weight: normal;
+  }
+
+  .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    @include box-sizing(border-box);
+
+    &:focus {
+      z-index: 2;
+    }
+  }
+
+  input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+
+.angular-google-map-container { 
+  height: 500px; 
+}
+
+.loading {
+  height: 400px; 
+  width: 400px;
+  opacity: .7;
+}
+
+.homeTitle {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  right: 20px;
+  text-align: center;
+  font-size: 66px;
+  color: white;
+  text-shadow: 1px 1px 4px #333;
+}
+
+.comcastTitle {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  text-align: center;
+  font-size: 70px;
+  color: white;
+  text-shadow: 1px 1px 4px #333;
+}
+
+.homeLoading {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.halftrans {
+  opacity:.8;
+}
+
+.absoluteCentered {
+  overflow: hidden;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.viewCardOuter {
+  width: 33%;
+  height: 100%;
+  padding: 10px;
+}
+
+.viewCardInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #eee;
+  position: relative;
+  border: 2px solid #eee;
+}
+
+.viewCardTitle {
+  width: 100%;
+  font-size: 30px;
+  color: #fff;
+  background-color: #bbb;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.viewCardGaugeImg {
+  width: 50%;
+  height: 100%;
+}
+
+.viewCardNotes {
+  width: 100%; 
+  height: 100%;
+  vertical-align: top;
+}
+
+.viewCardNotesCell {
+  width: 100%; 
+  height: 100%;
+  padding: 5px;
+}
+
+.viewCardNoteWrapper {
+  overflow: auto;
+  height: 100%;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.viewCardNote {
+  font-family: monospace, sans-serif;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: .8;
+  cursor: pointer;
+}
+
+.viewCardNoteTitle {
+  font-weight: bold;
+}
+
+.viewCardNoteDescription {
+}
+
+
+/*animations*/
+
+
+/*show cards wrapper*/
+
+.viewsWrapper {
+  display:block!important;
+  position: absolute;
+  -webkit-transition:top cubic-bezier(.03,.92,.7,1.18) 1s;
+  transition:top cubic-bezier(.03,.92,.7,1.18) 1s;
+  top: 100px;
+  bottom: 0px;
+  left: 20px;
+  right: 20px;
+  padding: 20px;
+}
+
+.viewsWrapper.ng-hide {
+  top: 100%;
+}
+
+.viewsWrapper.ng-hide-add {
+}
+
+.viewsWrapper.ng-hide-remove {
+  -webkit-transition:top cubic-bezier(.03,.92,.7,1.18) 1s;
+  transition:top cubic-bezier(.03,.92,.7,1.18) 1s;
+  top: 100%;
+}
+
+.moreInfo {
+  color: rgb(17, 63, 181);
+  float:right; 
+  font-weight:bol
+}
+
+.backToBriefing {
+  background-color: rgb(56, 56, 56);
+  position: fixed;
+  bottom: 4px;
+  right: 4px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.statusicon {
+  opacity: .4;
+}
+
+.statuscell {
+  vertical-align: top;
+  padding-right: 10px;
+}
+
+.needletext {
+  position: absolute;
+  left: 0px;
+  right: 0;
+  bottom: 0px;
+  z-index: 100;
+  font-size: 16px;
+  text-align: center;
+  color: rgb(90, 90, 90);
+  opacity: .8;
+}
+
+.needlebase {
+  -webkit-transition:all cubic-bezier(.24,.69,.28,1.26) 3s;
+  transition:all cubic-bezier(.24,.69,.28,1.26) 3s;
+  transform: rotate(-90deg);
+}
+
+.view-animate-forward.ng-enter {
+  -webkit-transition:all linear .5s;
+  transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:100%;
+  width: 100%;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-forward.ng-enter.ng-enter-active {
+  left:0;
+}
+
+.view-animate-forward.ng-leave {
+  -webkit-transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-forward.ng-leave.ng-leave-active {
+  left:-100%;
+}
+
+
+
+
+.view-animate-backward.ng-enter {
+  -webkit-transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:-100%;
+  right:0;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-backward.ng-enter-active {
+  left:0;
+}
+
+.view-animate-backward.ng-leave {
+  -webkit-transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  transition:all cubic-bezier(.03,.92,.7,1.18) .5s;
+  display:block;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:0px;
+}
+
+.view-animate-backward.ng-leave-active {
+  left:100%;
+}

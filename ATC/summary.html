@@ -1,0 +1,60 @@
+<div ng-controller="SummaryCtrl" ng-init="init()">
+
+	<map id="map" center="41, -90" zoom="4"  disable-default-u-i="true" xon-center-changed="centerChanged()">
+		 <!-- <marker position="34, -118" on-click="click()" title="Click to zoom"></marker>  -->
+	</map>
+
+    <div class="homeTitle">Executive Briefing</div>
+
+   	<div class="viewsWrapper" ng-show="dataService.showCards">
+	   	<table class="" style="width: 100%; height: 100%;">
+			<tr>
+				<td ng-repeat="view in views" class="viewCardOuter">
+				   	<div class="viewCardInner">
+
+
+					   	<table style="width: 100%; height: 100%;">
+							<tr>
+								<td class="viewCardTitle" style="background-color: {{view.color}}">
+									{{view.name}}
+								</td>
+							</tr>
+
+							<tr>
+								<td class="viewCardNotesCell">
+									<div class="viewCardNoteWrapper">
+										<div class="viewCardNote" ng-repeat="note in view.notes" ng-style="getNoteStyle()">
+
+											<table style="width: 100%; height: 100%;">
+												<tr>
+													<td rowspan="2" class="statuscell">
+														<img class="statusicon" ng-src="images/{{note.catagory}}_icon.png">
+													</td>
+													<td class="viewCardNoteTitle">{{note.title}}</td>
+												</tr>
+												<tr>
+													<td class="viewCardNoteDEscription">
+														{{note.description}}
+														<span class="moreInfo" ng-click="showMoreInfo()">More info...<span>
+													</td>
+												</tr>
+											</table>
+							   	 		</div>
+							   	 	</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center; height: 110px;">
+									<div cc-peacock-gauge ng-show="true" style="width: 100%; height: 110%;" value="view.value"></div>
+								</td>
+							</tr>
+				   	</div>
+			  </td>
+			</tr>
+		</table>
+   </div>
+
+   <div class="backToBriefing" ng-show="dataService.showBackToBrief" ng-click="restoreCards()">Back to Briefing</div>
+</div>
+

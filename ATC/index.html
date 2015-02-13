@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="AppModule">
+
+  <head>
+    <link href='css/bootstrap.css' rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/angular/angular.1.2.9.js"></script>
+    <script src="js/googlemaps.js"></script>
+
+    <script src="js/angular/angular-animate.min.js"></script>
+    <script src="js/angular/angular-route.min.js"></script>
+    <script src="js/angular/angular-resource.min.js"></script>
+    <script src="js/angular/modules/directives.js"></script>
+    <script src="js/angular/modules/pagecontrollers.js"></script>
+    <script src="js/angular/modules/angular-maps.js"></script>
+
+    <title>ATC</title>
+  </head>
+
+  <body ng-controller="RouteController">
+
+    <div class="view-animate-container">
+      <ng-view id="view" ng-animate="'slide'" class="{{dataService.transitionClass}}"></ng-view>  
+    </div>
+
+    <cc-peacock-loader animate="dataService.loading" ng-show="dataService.loading == true" class="loading absoluteCentered" slices="12"></cc-peacock-loader>
+    
+  </body>
+</html>
