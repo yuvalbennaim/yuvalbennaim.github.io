@@ -1,8 +1,14 @@
-<div ng-controller="SummaryCtrl" ng-init="init()">
+<div ng-controller="MapCtrl" ng-init="init()">
 
-	<map id="map" center="41, -90" zoom="5" disable-default-u-i="true">
-		 <!-- <marker position="34, -118" on-click="click()" title="Click to zoom"></marker>  -->
+	<map id="map" center="41, -90" zoom="5" disable-default-u-i="true" class="map">
+	  <shape name="rectangle" stroke-color="#FF0000" stroke-opacity="0.6" stroke-weight="2" fill-color="#FF0000" fill-opacity="0.35" bounds="[
+	    [34.0019, -118.4814],
+      [34.202234, -118.143684]
+     ]">
+   </shape>
 	</map>
+
+	<div class="homeTitle">{{dataService.pageTitle}}</div>
 
 	<div class="backToBriefing" ng-click="restoreCards()">Back to Briefing</div>
 </div>

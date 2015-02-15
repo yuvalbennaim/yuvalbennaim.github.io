@@ -10,8 +10,15 @@ app.service('dataService', function() {
   dataService.loading = false;
   dataService.showCards = false;
   dataService.loginReady = false;
-  dataService.showBackToBrief = false;
+  dataService.animateNeedle = true;
   dataService.transitionClass = "";
+  dataService.pageTitle = "Executive Briefing";
+
+  dataService.bounds = [
+    [34.0019, -118.4814],
+    [34.202234, -118.143684]
+   ] ;
+
   return dataService;
 });
 
@@ -32,7 +39,6 @@ app.config(function ($routeProvider) {
 
 app.controller("RouteController", function RouteController($rootScope, $scope, $location, $timeout, dataService) {
   $scope.dataService = dataService;
-  dataService.loading = false;
 
   $scope.$on('$locationChangeStart', function(event, next, current) { 
     var path = $location.path();
@@ -65,12 +71,8 @@ app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService
     }, 5000);
   }
 
-
   $scope.login = function() {
-    dataService.viewReady = false;
-    dataService.transitionClass = "view-animate-forward";
-    dataService.viewReady = true;
-    top.location = "#/summary";
+    $scope.goForward();
   }
 
   $scope.goForward = function() {
@@ -79,9 +81,46 @@ app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService
     dataService.showCards = false;
     dataService.loginReady = false;
 
+    //$timeout(function () {
+      dataService.loading = true;
+    //}, 1000);
+
     $timeout(function () {
       top.location = "#/summary";
     });
+  }
+});
+
+
+app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) {
+  $scope.init = function() {
+    dataService.viewReady = true;
+
+    $timeout(function () {
+    }, 1000);
+
+    $timeout(function () {
+      dataService.showCards = true;
+      dataService.loading = false;
+    }, 4000);
+  }
+
+  $scope.$on('mapInitialized', function(evt, evtMap) {
+    dataService.mapInstance = evtMap;
+
+    if(dataService.latLng != undefined) {
+      $timeout(function () {
+        dataService.mapInstance.panTo(dataService.latLng);
+        dataService.mapInstance.setZoom(10);
+      }, 1000);
+    }
+  });
+
+ $scope.restoreCards = function() {
+    dataService.latLng = null;
+    dataService.transitionClass = "view-animate-backward";
+    dataService.loading = false;
+    top.location = "#/summary";
   }
 });
 
@@ -103,9 +142,9 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
       {"lat" : 34.0219, "long": -118.4814,  "title" : "Los Angeles", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
       ]},
     {"name" : "Central", "color" : "#C26FA1", "value" : "75", "notes": [
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "Sat. Louis", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
+      {"lat" : 39.0997, "long": -94.5783,  "title" : "St. Louis", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
       {"lat" : 39.0997, "long": -94.5783,  "title" : "Kanasas City", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "Demoines", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
+      {"lat" : 39.0997, "long": -94.5783,  "title" : "De Moines", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
       ]}, 
     {"name" : "North East", "color" : "#C26F6F", "value" : "43", "notes": [
       {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
@@ -117,47 +156,27 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
 
   $scope.init = function() {
     dataService.viewReady = true;
-    dataService.showCards = false;
-
-    $timeout(function () {
-      dataService.loading = true;
-    }, 1000);
+    dataService.pageTitle = "Executive Briefing";
 
     $timeout(function () {
       dataService.showCards = true;
       dataService.loading = false;
-    }, 3000);
-
-    $scope.mapElement = $("#map");
-    var h = $(window).height();
-    $scope.mapElement.height(h + "px");
-  }
-
-  $scope.$on('mapInitialized', function(evt, evtMap) {
-    $scope.mapInstance = evtMap;
-    $scope.marker = $scope.mapInstance.markers[0];
-  });
-
-  $scope.centerChanged = function(event) {
+    }, 4000);
   }
 
   $scope.showMoreInfo = function() {
     var lat = this.note.lat;
     var long = this.note.long;
-    dataService.showBackToBrief = true;
-    $scope.dataService.showCards = false;
-    $scope.mapInstance.setZoom(10);
     var latLng = new google.maps.LatLng(lat, long);
-    $scope.mapInstance.panTo(latLng);
-    //$scope.mapInstance.panTo($scope.marker.getPosition());
-  }
+    dataService.latLng = latLng;
+    dataService.transitionClass = "view-animate-forward";
+    dataService.pageTitle = this.note.title;
+    dataService.loginReady = false;
+    dataService.loading = false;
 
-  $scope.restoreCards = function() {
-    dataService.showBackToBrief = false;
-    dataService.showCards = true;
-    var latLng = new google.maps.LatLng(41, -90);
-    $scope.mapInstance.panTo(latLng);
-    $scope.mapInstance.setZoom(4);
+    $timeout(function () {
+      top.location = "#/map";
+    }, 100);
   }
 
   $scope.getNoteStyle = function() {
@@ -188,7 +207,6 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
     dataService.transitionClass = "view-animate-backward";
     
     $timeout(function () {
-
       $timeout(function () {
         dataService.viewReady = false;
       }, 100);

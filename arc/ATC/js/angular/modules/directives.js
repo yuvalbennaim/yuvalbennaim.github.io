@@ -183,7 +183,7 @@ directives.directive("ccPeacockLoader", function() {
   return {
     replace: false,
     restrict: "EA",
-    template: '<canvas ng-init="init()" ng-click="toggleContinue()" style="z-index: 10"/><table class="absoluteCentered" style="width: 100%; height: 100%;"><tr><td class="homeLoading" ng-click="toggleContinue()">Loading</td></tr></table>',
+    template: '<canvas ng-init="init()" ng-click="toggleContinue()" style="z-index: 10"/>',
 
     scope: {
       width: "@width",
@@ -353,14 +353,19 @@ directives.directive("ccPeacockGauge", function() {
       $scope.needle = $scope.element.find('.needlebase')[0];
     },
 
-    controller: function($scope, $timeout, helperService) {
+    controller: function($scope, $timeout, helperService, dataService) {
       $scope.init = function() {
         $timeout(function() {
+          $scope.setDimensions();
+        });
+
+        $(window).resize(function() {
           $scope.setDimensions();
         });
       }
 
       $scope.animateNeedle = function() {
+        dataService.animateNeedle = false;
         $scope.v = (parseInt($scope.value) / 100) * 180 - 90;
         $($scope.needle).css("transform", "rotate(" + $scope.v + "deg)");
       }
@@ -375,9 +380,14 @@ directives.directive("ccPeacockGauge", function() {
           "transform-origin" : "bottom center"
         }
 
-        $timeout(function() {
+        if(dataService.animateNeedle) {
+          $timeout(function() {
+            $scope.animateNeedle();
+          }, 8000);
+        }
+        else {
           $scope.animateNeedle();
-        }, 5000);
+        }
 
         return obj;
       }

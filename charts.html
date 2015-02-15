@@ -18,6 +18,8 @@
 
   <body class="charts" ng-app="AppModule" ng-controller="ChartController" ng-init="init()">
 
+    <span ng-click="zoomTest()">zoom</span>
+
     <div class="absoluteCentered cpuMonitor" style="height: 300px; width: 600px;">
       <canvas id="line" class="chart chart-line" data="dataService.cpuData" labels="labels" legend="false" series="series" options="options"></canvas> 
     </div>
