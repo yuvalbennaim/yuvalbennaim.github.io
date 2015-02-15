@@ -58,7 +58,7 @@ app.controller("RouteController", function RouteController($rootScope, $scope, $
 
 
 
-///////////////////////  RESUME CONTROLLER //////////////////////////////////////
+///////////////////////  LOGIN CONTROLLER //////////////////////////////////////
 
 
 app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService, helperService) {
@@ -92,6 +92,9 @@ app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService
 });
 
 
+///////////////////////  MAP CONTROLLER //////////////////////////////////////
+
+
 app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) {
   $scope.init = function() {
     dataService.viewReady = true;
@@ -109,10 +112,10 @@ app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) 
     dataService.mapInstance = evtMap;
 
     if(dataService.latLng != undefined) {
-      $timeout(function () {
         dataService.mapInstance.panTo(dataService.latLng);
         dataService.mapInstance.setZoom(10);
-      }, 1000);
+
+        //draw a circle
     }
   });
 
@@ -123,6 +126,10 @@ app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) 
     top.location = "#/summary";
   }
 });
+
+
+
+///////////////////////  SUMMARY CONTROLLER //////////////////////////////////////
 
 
 app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataService) {
