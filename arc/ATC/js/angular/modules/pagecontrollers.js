@@ -14,10 +14,10 @@ app.service('dataService', function() {
   dataService.transitionClass = "";
   dataService.pageTitle = "Executive Briefing";
 
-  dataService.bounds = [
-    [34.0019, -118.4814],
-    [34.202234, -118.143684]
-   ] ;
+  dataService.criticalColor = "255, 0, 0";
+  dataService.badColor = "255, 165, 0";
+  dataService.neutralColor = "255, 255, 0";
+  dataService.goodColor = "0, 255, 0";
 
   return dataService;
 });
@@ -111,13 +111,28 @@ app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) 
   $scope.$on('mapInitialized', function(evt, map) {
     if(dataService.latLng != undefined) {
       map.panTo(dataService.latLng);
-       map.setZoom(10);
+      map.setZoom(10);
+
+      var clr;
+
+      if(dataService.zoneColor == "critical") {
+        clr = "rgb(" + dataService.criticalColor + ")";
+      }
+      else if(dataService.zoneColor == "bad") {
+        clr = "rgb(" + dataService.badColor + ")";
+      }
+      else if(dataService.zoneColor == "neutral") {
+        clr = "rgb(" + dataService.neutralColor + ")";
+      }
+      else if(dataService.zoneColor == "good") {
+        clr = "rgb(" + dataService.goodColor + ")";
+      }
 
       var populationOptions = {
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.6,
+        strokeColor: clr,
+        strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: '#FF0000',
+        fillColor: clr,
         fillOpacity: 0.3,
         map: map,
         center: dataService.latLng,
@@ -130,6 +145,7 @@ app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) 
 
  $scope.restoreCards = function() {
     dataService.latLng = null;
+    dataService.zoneColor = null;
     dataService.transitionClass = "view-animate-backward";
     dataService.loading = false;
     top.location = "#/summary";
@@ -142,33 +158,7 @@ app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) 
 
 
 app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataService) {
-  $scope.criticalColor = "rgba(255, 0, 0, 0.33)";
-  $scope.badColor = "rgba(255, 165, 0, 0.33)";
-  $scope.neutralColor = "rgba(255, 255, 0, 0.33)";
-  $scope.goodColor = "rgba(0, 255, 0, 0.33)";
-
-  $scope.views = [
-    {"name" : "West", "color" : "#7AA6D2", "value" : "25", "notes": [
-      {"lat" : 34.0219, "long": -118.4814, "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "critical"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "critical"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "neutral"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "neutral"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Los Angeles", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
-      ]},
-    {"name" : "Central", "color" : "#C26FA1", "value" : "75", "notes": [
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "St. Louis", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "Kanasas City", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "De Moines", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
-      ]}, 
-    {"name" : "North East", "color" : "#C26F6F", "value" : "43", "notes": [
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "neutral"},
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Syracuse", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
-      ]}
-  ];
+  $scope.views = summaryData;
 
   $scope.init = function() {
     dataService.viewReady = true;
@@ -186,6 +176,7 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
     var latLng = new google.maps.LatLng(lat, long);
     dataService.latLng = latLng;
     dataService.transitionClass = "view-animate-forward";
+    dataService.zoneColor = this.note.catagory 
     dataService.pageTitle = this.note.title;
     dataService.loginReady = false;
     dataService.loading = false;
@@ -200,22 +191,22 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
     var bg;
 
     if(note.catagory == "critical") {
-      bg = $scope.criticalColor;
+      bg = dataService.criticalColor;
     }
     else if(note.catagory == "bad") {
-      bg = $scope.badColor;
+      bg = dataService.badColor;
     }
     else if(note.catagory == "neutral") {
-      bg = $scope.neutralColor;
+      bg = dataService.neutralColor;
     }
     else if(note.catagory == "good") {
-      bg = $scope.goodColor;
+      bg = dataService.goodColor;
     }
     else {
       return null;
     }
 
-    return {"background-color" :  bg};
+    return {"background-color" :  "rgba(" + bg + ", .3)"};
   }
 
   $scope.goBack = function() {
