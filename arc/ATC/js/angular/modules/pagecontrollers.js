@@ -108,14 +108,23 @@ app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) 
     }, 4000);
   }
 
-  $scope.$on('mapInitialized', function(evt, evtMap) {
-    dataService.mapInstance = evtMap;
-
+  $scope.$on('mapInitialized', function(evt, map) {
     if(dataService.latLng != undefined) {
-        dataService.mapInstance.panTo(dataService.latLng);
-        dataService.mapInstance.setZoom(10);
+      map.panTo(dataService.latLng);
+       map.setZoom(10);
 
-        //draw a circle
+      var populationOptions = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.6,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.3,
+        map: map,
+        center: dataService.latLng,
+        radius: 20000
+      };
+
+      cityCircle = new google.maps.Circle(populationOptions);
     }
   });
 
