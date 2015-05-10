@@ -85,7 +85,7 @@ window.jobData = [
       "company": "Comcast",
       "date_from": "2015-01-05",
       "date_to": "Current",
-      "position": "Sr Software Developer",
+      "position": "UI Architect",
       "logo": "images/comcst_logo_peacock.jpg",
       "detail": "Angular.JS development"
   },
