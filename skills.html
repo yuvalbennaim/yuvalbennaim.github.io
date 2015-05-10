@@ -1,7 +1,7 @@
 <div ng-controller="SkillsCtrl" ng-init="init()">
 
 	<div class="contentheader">
-    My Skills
+    My Skills {{dataService.currentMarker}}
   </div>
 
   <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
