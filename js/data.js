@@ -44,7 +44,7 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "Git, Get, Got It !",
+		"name" : "Git, GitHub",
 		"score" : 8,
 		"color" :"209, 170, 240"
 	}
@@ -56,8 +56,8 @@ window.skillsData = [
 	}
 	,	
 	{
-		"name" : "Node.JS, Grunt, Bower, Karma",
-		"score" : 7,
+		"name" : "Node.JS",
+		"score" : 8,
 		"color" :"223, 72, 105"
 	}
 	,
@@ -77,12 +77,6 @@ window.skillsData = [
 		"name" : "Graphics, Photoshop, UI/UX",
 		"score" : 8,
 		"color" :"186, 92,116"
-	}
-	,
-	{
-		"name" : "Ruby on Rails, C, C++, C#, Python",
-		"score" : 5,
-		"color" :"186, 116, 92"
 	}
 ];
 
