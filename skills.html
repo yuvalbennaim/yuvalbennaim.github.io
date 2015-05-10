@@ -9,7 +9,7 @@
 
       <div class="scale">
         <div ng-repeat="unit in dataService.scale" class="scaleunit">
-          <div ng-class="(dataService.currentMarker*100/100) == unit ? 'scaleUnitLabelSelected' : 'scaleUnitLabel'">{{unit}}</div>
+          <div ng-class="(new String(dataService.currentMarker).indexOf(unit) == 0) ? 'scaleUnitLabelSelected' : 'scaleUnitLabel'">{{unit}}</div>
         </div>
       </div>
 
