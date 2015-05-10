@@ -9,7 +9,7 @@
 
       <div class="scale">
         <div ng-repeat="unit in dataService.scale" class="scaleunit">
-          <div ng-class="parseInt(dataService.currentMarker) == unit ? 'scaleUnitLabelSelected' : 'scaleUnitLabel'">{{unit}}</div>
+          <div ng-class="(dataService.currentMarker*100/100) == unit ? 'scaleUnitLabelSelected' : 'scaleUnitLabel'">{{unit}}</div>
         </div>
       </div>
 
@@ -20,8 +20,6 @@
     </div>
   </div>	
 </div>
-
-{{dataService.currentMarker}}
 
 
 
