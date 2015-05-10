@@ -160,6 +160,7 @@
 
     $scope.getScaleClass = function() {
       var unit = parseInt(this.unit);
+      console.log(this.name + ' ' + this.unit + ' getScaleClass ' + dataService.currentMarker);
       
       if(dataService.currentMarker == unit) {
         return 'scaleUnitLabelSelected';
