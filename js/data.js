@@ -57,7 +57,7 @@ window.skillsData = [
 	,	
 	{
 		"name" : "Node.JS",
-		"score" : 8,
+		"score" : 8.5,
 		"color" :"223, 72, 105"
 	}
 	,
