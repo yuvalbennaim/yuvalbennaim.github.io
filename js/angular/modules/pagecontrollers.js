@@ -160,10 +160,10 @@
 
     $scope.getScaleClass = function() {
       if(parseInt(dataService.currentMarker) == this.unit) {
-        return scaleUnitLabelSelected;
+        return 'scaleUnitLabelSelected';
       }
       else {
-        return scaleUnitLabel;
+        return 'scaleUnitLabel';
       }
     }
 
