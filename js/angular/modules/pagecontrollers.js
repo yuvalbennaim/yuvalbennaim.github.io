@@ -163,10 +163,10 @@
       console.log('getScaleClass ' + unit);
       
       if(dataService.currentMarker == unit) {
-        return scaleUnitLabelSelected;
+        return 'scaleUnitLabelSelected';
       }
       else {
-        return scaleUnitLabel;
+        return 'scaleUnitLabel';
       }
     }
 
