@@ -159,14 +159,13 @@
     }
 
     $scope.getScaleClass = function() {
-      var score = parseInt(this.unit.score);
-      //console.log(this.unit.name + ' ' + score + ' getScaleClass ' + dataService.currentMarker);
+      var unit = parseInt(this.unit);
       
-      if(dataService.currentMarker == score) {
-        return 'scaleUnitLabelSelected';
+      if(parseInt(dataService.currentMarker) == unit) {
+        return scaleUnitLabelSelected;
       }
       else {
-        return 'scaleUnitLabel';
+        return scaleUnitLabel;
       }
     }
 
