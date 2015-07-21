@@ -1,5 +1,7 @@
 <div ng-controller="LoginCtrl" ng-init="init()">
 
+	<map id="inertmap" center="41, -90" zoom="4" disable-default-u-i="true" xon-center-changed="centerChanged()" class="map" style="opacity: .7"></map>
+
 	<table class="absoluteCentered loginTable">
 		<tr>
 			<td class="homeTitle" ng-click="goForward()">State of the Union</td>

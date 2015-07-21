@@ -10,8 +10,15 @@ app.service('dataService', function() {
   dataService.loading = false;
   dataService.showCards = false;
   dataService.loginReady = false;
-  dataService.showBackToBrief = false;
+  dataService.animateNeedle = true;
   dataService.transitionClass = "";
+  dataService.pageTitle = "Executive Briefing";
+
+  dataService.criticalColor = "255, 0, 0";
+  dataService.badColor = "255, 165, 0";
+  dataService.neutralColor = "255, 255, 0";
+  dataService.goodColor = "0, 255, 0";
+
   return dataService;
 });
 
@@ -32,7 +39,6 @@ app.config(function ($routeProvider) {
 
 app.controller("RouteController", function RouteController($rootScope, $scope, $location, $timeout, dataService) {
   $scope.dataService = dataService;
-  dataService.loading = false;
 
   $scope.$on('$locationChangeStart', function(event, next, current) { 
     var path = $location.path();
@@ -52,7 +58,7 @@ app.controller("RouteController", function RouteController($rootScope, $scope, $
 
 
 
-///////////////////////  RESUME CONTROLLER //////////////////////////////////////
+///////////////////////  LOGIN CONTROLLER //////////////////////////////////////
 
 
 app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService, helperService) {
@@ -65,12 +71,8 @@ app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService
     }, 5000);
   }
 
-
   $scope.login = function() {
-    dataService.viewReady = false;
-    dataService.transitionClass = "view-animate-forward";
-    dataService.viewReady = true;
-    top.location = "#/summary";
+    $scope.goForward();
   }
 
   $scope.goForward = function() {
@@ -79,6 +81,10 @@ app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService
     dataService.showCards = false;
     dataService.loginReady = false;
 
+    //$timeout(function () {
+      dataService.loading = true;
+    //}, 1000);
+
     $timeout(function () {
       top.location = "#/summary";
     });
@@ -86,78 +92,98 @@ app.controller("LoginCtrl", function ($scope, dataService, $timeout, dataService
 });
 
 
-app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataService) {
-  $scope.criticalColor = "rgba(255, 0, 0, 0.33)";
-  $scope.badColor = "rgba(255, 165, 0, 0.33)";
-  $scope.neutralColor = "rgba(255, 255, 0, 0.33)";
-  $scope.goodColor = "rgba(0, 255, 0, 0.33)";
+///////////////////////  MAP CONTROLLER //////////////////////////////////////
 
-  $scope.views = [
-    {"name" : "West", "color" : "#7AA6D2", "value" : "25", "notes": [
-      {"lat" : 34.0219, "long": -118.4814, "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "critical"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "critical"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "neutral"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Santa Monica Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "neutral"},
-      {"lat" : 34.0219, "long": -118.4814,  "title" : "Los Angeles", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
-      ]},
-    {"name" : "Central", "color" : "#C26FA1", "value" : "75", "notes": [
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "Sat. Louis", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "Kanasas City", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 39.0997, "long": -94.5783,  "title" : "Demoines", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
-      ]}, 
-    {"name" : "North East", "color" : "#C26F6F", "value" : "43", "notes": [
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "bad"},
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "neutral"},
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Albany Outage", "description" : "Main line rupture due to construction in the area", "catagory" : "good"},
-      {"lat" : 42.6525, "long": -73.7572,  "title" : "Syracuse", "description" : "Everyting looks good with the network migration", "catagory" : "good"}
-      ]}
-  ];
 
+app.controller("MapCtrl", function ($scope, dataService, $timeout, dataService) {
   $scope.init = function() {
     dataService.viewReady = true;
-    dataService.showCards = false;
 
     $timeout(function () {
-      dataService.loading = true;
     }, 1000);
 
     $timeout(function () {
       dataService.showCards = true;
       dataService.loading = false;
-    }, 3000);
-
-    $scope.mapElement = $("#map");
-    var h = $(window).height();
-    $scope.mapElement.height(h + "px");
+    }, 4000);
   }
 
-  $scope.$on('mapInitialized', function(evt, evtMap) {
-    $scope.mapInstance = evtMap;
-    $scope.marker = $scope.mapInstance.markers[0];
+  $scope.$on('mapInitialized', function(evt, map) {
+    if(dataService.latLng != undefined) {
+      map.panTo(dataService.latLng);
+      map.setZoom(10);
+
+      var clr;
+
+      if(dataService.zoneColor == "critical") {
+        clr = "rgb(" + dataService.criticalColor + ")";
+      }
+      else if(dataService.zoneColor == "bad") {
+        clr = "rgb(" + dataService.badColor + ")";
+      }
+      else if(dataService.zoneColor == "neutral") {
+        clr = "rgb(" + dataService.neutralColor + ")";
+      }
+      else if(dataService.zoneColor == "good") {
+        clr = "rgb(" + dataService.goodColor + ")";
+      }
+
+      var populationOptions = {
+        strokeColor: clr,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: clr,
+        fillOpacity: 0.3,
+        map: map,
+        center: dataService.latLng,
+        radius: 20000
+      };
+
+      cityCircle = new google.maps.Circle(populationOptions);
+    }
   });
 
-  $scope.centerChanged = function(event) {
+ $scope.restoreCards = function() {
+    dataService.latLng = null;
+    dataService.zoneColor = null;
+    dataService.transitionClass = "view-animate-backward";
+    dataService.loading = false;
+    top.location = "#/summary";
+  }
+});
+
+
+
+///////////////////////  SUMMARY CONTROLLER //////////////////////////////////////
+
+
+app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataService) {
+  $scope.views = summaryData;
+
+  $scope.init = function() {
+    dataService.viewReady = true;
+    dataService.pageTitle = "Executive Briefing";
+
+    $timeout(function () {
+      dataService.showCards = true;
+      dataService.loading = false;
+    }, 4000);
   }
 
   $scope.showMoreInfo = function() {
     var lat = this.note.lat;
     var long = this.note.long;
-    dataService.showBackToBrief = true;
-    $scope.dataService.showCards = false;
-    $scope.mapInstance.setZoom(10);
     var latLng = new google.maps.LatLng(lat, long);
-    $scope.mapInstance.panTo(latLng);
-    //$scope.mapInstance.panTo($scope.marker.getPosition());
-  }
+    dataService.latLng = latLng;
+    dataService.transitionClass = "view-animate-forward";
+    dataService.zoneColor = this.note.catagory 
+    dataService.pageTitle = this.note.title;
+    dataService.loginReady = false;
+    dataService.loading = false;
 
-  $scope.restoreCards = function() {
-    dataService.showBackToBrief = false;
-    dataService.showCards = true;
-    var latLng = new google.maps.LatLng(41, -90);
-    $scope.mapInstance.panTo(latLng);
-    $scope.mapInstance.setZoom(4);
+    $timeout(function () {
+      top.location = "#/map";
+    }, 100);
   }
 
   $scope.getNoteStyle = function() {
@@ -165,22 +191,22 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
     var bg;
 
     if(note.catagory == "critical") {
-      bg = $scope.criticalColor;
+      bg = dataService.criticalColor;
     }
     else if(note.catagory == "bad") {
-      bg = $scope.badColor;
+      bg = dataService.badColor;
     }
     else if(note.catagory == "neutral") {
-      bg = $scope.neutralColor;
+      bg = dataService.neutralColor;
     }
     else if(note.catagory == "good") {
-      bg = $scope.goodColor;
+      bg = dataService.goodColor;
     }
     else {
       return null;
     }
 
-    return {"background-color" :  bg};
+    return {"background-color" :  "rgba(" + bg + ", .3)"};
   }
 
   $scope.goBack = function() {
@@ -188,7 +214,6 @@ app.controller("SummaryCtrl", function ($scope, dataService, $timeout, dataServi
     dataService.transitionClass = "view-animate-backward";
     
     $timeout(function () {
-
       $timeout(function () {
         dataService.viewReady = false;
       }, 100);

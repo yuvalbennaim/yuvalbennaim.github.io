@@ -44,7 +44,7 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "Git, Get, Got It !",
+		"name" : "Git, GitHub",
 		"score" : 8,
 		"color" :"209, 170, 240"
 	}
@@ -56,8 +56,8 @@ window.skillsData = [
 	}
 	,	
 	{
-		"name" : "Node.JS, Grunt, Bower, Karma",
-		"score" : 7,
+		"name" : "Node.JS",
+		"score" : 8.5,
 		"color" :"223, 72, 105"
 	}
 	,
@@ -78,12 +78,6 @@ window.skillsData = [
 		"score" : 8,
 		"color" :"186, 92,116"
 	}
-	,
-	{
-		"name" : "Ruby on Rails, C, C++, C#, Python",
-		"score" : 5,
-		"color" :"186, 116, 92"
-	}
 ];
 
 window.jobData = [
@@ -91,7 +85,7 @@ window.jobData = [
       "company": "Comcast",
       "date_from": "2015-01-05",
       "date_to": "Current",
-      "position": "Sr Software Developer",
+      "position": "UI Architect",
       "logo": "images/comcst_logo_peacock.jpg",
       "detail": "Angular.JS development"
   },

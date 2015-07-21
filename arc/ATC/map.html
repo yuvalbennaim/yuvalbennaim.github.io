@@ -1,8 +1,8 @@
-<div ng-controller="SummaryCtrl" ng-init="init()">
+<div ng-controller="MapCtrl" ng-init="init()">
 
-	<map id="map" center="41, -90" zoom="5" disable-default-u-i="true">
-		 <!-- <marker position="34, -118" on-click="click()" title="Click to zoom"></marker>  -->
-	</map>
+	<map id="map" center="41, -90" zoom="5" disable-default-u-i="true" class="map"></map>
+
+	<div class="homeTitle">{{dataService.pageTitle}}</div>
 
 	<div class="backToBriefing" ng-click="restoreCards()">Back to Briefing</div>
 </div>

@@ -158,12 +158,22 @@
       dataService.skills = window.skillsData;
     }
 
+    $scope.getScaleClass = function() {
+      if(parseInt(dataService.currentMarker) == this.unit) {
+        return 'scaleUnitLabelSelected';
+      }
+      else {
+        return 'scaleUnitLabel';
+      }
+    }
+
     $scope.generateBarStyle = function() {
       var bg = "rgba(" + this.skill.color + " , .3)";
       var w = parseInt(this.skill.score * 10) + "%";
       return {"background-color" :  bg, "width" : w}
     }
 
+    
     $scope.generateMarkerStyle = function() {
       if(dataService.currentMarker == null) {
         return null;

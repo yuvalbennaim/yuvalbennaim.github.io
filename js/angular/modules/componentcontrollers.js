@@ -10,9 +10,11 @@ app.service('dataService', function() {
   dataService.showMonitor = true;
   dataService.viewShowing = false;
   dataService.animateBubbles = true;
+  dataService.bezierCurve = true;
   dataService.showSettings = false;
   dataService.cpuData;
   dataService.cpuBeatInterval = 1000;
+  dataService.cpuAverage = 50;
   return dataService;
 });
 
@@ -29,23 +31,46 @@ app.controller('ChartController', function ($scope, $timeout, dataService, helpe
     []
   ];
 
-  $scope.options = {"animation":false, "showScale":true, "showTooltips":false, "pointDot":false, "datasetStrokeWidth":2};
+  $scope.options = {"animation":false, "scaleShowGridLines" : false, "showScale":true, "showTooltips":false, "pointDot":false, "datasetStrokeWidth":2, "bezierCurve": dataService.bezierCurve};
 
   $scope.init = function() {
     $scope.labels = [];
 
     for (var i = 0; i < dataService.cpuData[0].length; i++) {
-      dataService.cpuData[1][i] = 20 + parseInt(helperService.generateRandomInteger(10));
+      dataService.cpuData[1][i] = 20;
       $scope.labels.push("");
     };
 
     $scope.cpuBeat();
   }
 
+  $scope.calculateRunningAverage = function() {
+    var total = 0;
+
+    for(var i = 1; i <= dataService.cpuAverage; i++) {
+      var index = dataService.cpuData[0].length - i;
+      total += dataService.cpuData[0][index];
+    };
+   
+    dataService.cpuData[1].shift(); 
+    dataService.cpuData[1].push(parseInt(total / dataService.cpuAverage)); 
+  }
+
   $scope.cpuBeat = function() {
     dataService.cpuData[0].push(dataService.cpuData[0].shift());    
-    dataService.cpuData[1].push(dataService.cpuData[1].shift());
+    $scope.calculateRunningAverage();
     $timeout($scope.cpuBeat, dataService.cpuBeatInterval);
+  }
+
+   $scope.zoomTest = function() {
+    dataService.cpuData[0] = [0,10,20,30,40,50,100,100,100,100,100,97,96,94,99,94,96,98,97,97,92,97];
+    dataService.cpuData[1] = [0,10,20,30,40,50,100,100,100,100,100,97,96,94,99,94,96,98,97,97,92,97];
+
+    $scope.labels = [];
+
+    for (var i = 0; i < dataService.cpuData[0].length; i++) {
+      $scope.labels.push(".");
+    };
   }
 });
 
