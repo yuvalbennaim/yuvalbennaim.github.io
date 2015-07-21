@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en-US" ng-app="LabsModule">
+  <head>
+    <meta charset="UTF-8">
+    <title>Rippler</title>
+    <script src="js/angular/angular.1.2.6.js"></script>
+    <script src="js/angular/modules/labscontrollers.js"></script>
+  </head>
+
+  <style>
+	  BODY {
+	    background-color: #0a0a0a;
+	    overflow: hidden;
+	    margin: 0;
+	  }
+  </style>
+
+  <body ng-controller="RippleCtrl" ng-init="init()">
+    
+    <div class="loginview" ng-mousemove="movement($event)">
+	  <canvas id="ripplecanvas"/>
+	</div>
+  </body>
+</html>
+
