@@ -119,7 +119,7 @@ window.jobData = [
       "date_to": "2012-06-15",
       "position": "Sr Software Developer",
       "logo": "images/serena.jpg",
-      "detail": "Developed the User Interfaces for the “Serena Request Center”, both a jQuery based Web Client, as well as an innovative Mobile Application for iOS and Android. devices. Before that, I was the Lead Developer on the Web User Interfaces of the company’s flagship product “Serena Business Manager”, AKA “TeamTrack”. 
+      "detail": "Developed the User Interfaces for the \“Serena Request Center\”, both a jQuery based Web Client, as well as an innovative Mobile Application for iOS and Android. devices. Before that, I was the Lead Developer on the Web User Interfaces of the company’s flagship product \“Serena Business Manager\”, AKA \“TeamTrack\”. 
 		\n\nDeveloped a host of ALM / BPM / SCM tools using Java and Swing. Participated o the Eclipse Project and wrote several JDBC drivers."
   },
   {
