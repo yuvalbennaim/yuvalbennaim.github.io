@@ -87,7 +87,7 @@ window.jobData = [
       "date_to": "Current",
       "position": "UI Architect",
       "logo": "images/comcst_logo_peacock.jpg",
-      "detail": "Angular.JS development"
+      "detail": "Developing a variety of Applications and Tools using JavaScript, AngularJS, Canvas and NodeJS (MEAN Stack)"
   },
   {
       "company": "Oppenheimer Gunds Inc.",
@@ -95,7 +95,7 @@ window.jobData = [
       "date_to": "2014-12-31",
       "position": "Sr Software Developer, UI Architect",
       "logo": "images/ofi.png",
-      "detail": "Web and Mobile Development using HTML5, JavaScript, Angular.JS, JQuery, CSS3, PhoneGap, MongoDB, Node.js and Ruby on Rails.\n\nArchitected and led the development effort of a major product which allows financial Advisers to create and manage their clients investment portfolios."
+      "detail": "Architected and led the development of a Financial Portfolio Management Suite using Javascript, AngularJS, Canvas, JQuery, Bootstrap, Foundation CSS and a host of other technologies."
   },
   {
       "company": "Pearson eCollege",
@@ -119,7 +119,8 @@ window.jobData = [
       "date_to": "2012-06-15",
       "position": "Sr Software Developer",
       "logo": "images/serena.jpg",
-      "detail": "Developed the User Interfaces for the “Serena Request Center”, both a jQuery based Web Client, as well as an innovative Mobile Application for iOS and Android. devices.\n\nBefore that, I have been the Lead Developer on the Web User Interfaces of the company’s flagship product “Serena Business Manager”, AKA “TeamTrack”. \n\nThe thin Web Client is cross browser (IE, FireFox, Mozilla, Safari), Section 508 Compliant, Internationalized, and utilizes AJAX for Rich User Interaction and performance. The server is a proprietary C++ application where 50% of the UI generation takes place, and the other half is dynamically created on the client using JavaScript and DOM manipulations.\n\nBefore joining the TeamTrack team, I was the UI Lead Developer for the company’s Distributed Software Change Management system, ChangeMan DS.  This was a Multi-tiered, MVC Client-Server application. The Client was built using Java Swing.\n\nIn my earlier years at Serena, I created various tools and utilities, including a  specialized JDBC Driver  that translated on-the-fly SQL queries written initially for SQLSERVER to Oracle and DB2 SQL syntax, a Java Swing WYSIWYG IDE for creating custom forms for the company’s early ALM tool, a Swing Document Diff / Merge Application, and an SWT Eclipse Plug-in."
+      "detail": "Developed the User Interfaces for the “Serena Request Center”, both a jQuery based Web Client, as well as an innovative Mobile Application for iOS and Android. devices. Before that, I was the Lead Developer on the Web User Interfaces of the company’s flagship product “Serena Business Manager”, AKA “TeamTrack”. 
+		\n\nDeveloped a host of ALM / BPM / SCM tools using Java and Swing. Participated o the Eclipse Project and wrote several JDBC drivers."
   },
   {
       "company": "CarsDirect.com",
@@ -127,7 +128,7 @@ window.jobData = [
       "date_to": "2001-04-10",
       "position": "Java Architect",
       "logo": "images/carsdirect.png",
-      "detail": "Joined this startup as a Senior Java Developer. Facilitated the migration of the set from IIS / SQLSERVER / ASP to a complete J2EE multi-tiered architecture running on clustered Oracle and Weblogic Application servers. \n\nBuilt the back office messaging (MQ Series and JMS) Enterprise Application Integration (EAI) between the CRM system (Silknet) and financial (Lawson) systems. \n\nDeveloped a Network\\Server Monitoring and Recovery Application in Java. This application was a live display of the production servers, monitoring their performance and  health statistics, and remote administration."
+      "detail": "Facilitated the migration of the set from IIS / SQLSERVER / ASP to a complete J2EE multi-tiered architecture running on clustered Oracle and Weblogic Application servers. \n\nBuilt the back office messaging (MQ Series and JMS) Enterprise Application Integration (EAI) between the CRM system (Silknet) and financial (Lawson) systems. \n\nDeveloped a Network Server Monitoring and Recovery Application in Java. This application was a live display of the production servers, monitoring their performance and  health statistics, and remote administration."
   },
   {
       "company": "ModaCAD",
@@ -135,7 +136,7 @@ window.jobData = [
       "date_to": "1999-02-21",
       "position": "Director of R&D",
       "logo": "images/modacad.jpg",
-      "detail": "Joined this company 2 years after its IPO. ModaCAD was a rising star in the  area of CAD applications geared for the Apparel and Furniture industries. We had a few boxed, consumer products like 3D Home Interior which was sold under an OEM to Broderbund Software.\n\nFor my fist project at ModaCAD, I created a CAD application called ModaWeave which simulated the design of Woven fabrics. This was a professional design software utilized d by fashion designers at companies like Lands End, the Gap, Levis, Janzen etc. to prototype woven fabrics, and using our other applications, create realistic 3D renderings.\n \nThis application was developed with Java 1.1, with it’s very primitives Graphics AWT library. It was natively compiled for Windows using an IDE called SuperCede. To the best of my knowledge, this may have been the first ever CAD application that was written exclusively in Java. \n\nNext at ModaCAD, I was the technical lead of a project, and web site called StyleClick.com. This was a fashion portal and E-Commerce site that used Java Servlets, JDBC and Weblogic Application Server.\n\nOne of the final projects I worked on at ModaCAD was a Fuzzy Logic based image comparison engine used for Fabric sample Matching. The same engine was later used to build a Fashion Recommendation Engine, and was one of the reasons \n\nIn 1998, riding the .com wave, ModaCAD renamed itself as StyleClick.com, and sold off its core CAD business. At the time I was tasked with creating a data syndication engine, and with XML becoming popular at the time, designed a set of XML over HTTP Web services. This was before the term was officially coined, and the SOAP protocol was conceived.\n\nIn 1999 ModaCAD was bought by USA Networks, and has since dissolved."
+      "detail": "Developed a variety of 3D CAD Systems in C++ and Java."
   },
   {
       "company": "Qubix Animation",
