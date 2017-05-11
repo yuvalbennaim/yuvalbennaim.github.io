@@ -1,13 +1,7 @@
 <div ng-controller="PortfolioCtrl" ng-init="init()">
-
-	<div class="contentheader">
-    {{dataService.selected.name}}
-  </div>
-
   <div ng-class="dataService.pageLoading ? 'scrollWrapperInTransition' :'scrollWrapper'">
     <img class="itemImg" ng-src="{{dataService.selected.download_url}}" /> 
   </div>
-	
 </div>
 
 
