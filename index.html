@@ -24,7 +24,7 @@
   <body ng-app="AppModule" ng-controller="RouteController" class="main">
     <!-- <yb-grid ng-show="dataService.showGrid" major="#444444" minor="#222222" alpha="dataService.gridAlpha"></yb-grid> -->
 
-    <yb-bubbles count="25" ng-hide="page != 'home'" alpha="dataService.bubblesAlpha" animate="dataService.animateBubbles" dimmer="dataService.viewShowing"></yb-bubbles>
+    <yb-bubbles count="25" alpha="dataService.bubblesAlpha" animate="dataService.animateBubbles" dimmer="dataService.viewShowing"></yb-bubbles>
 
     <div class="header">
       <div>Yuval Bennaim</div>
@@ -40,7 +40,7 @@
       <a ng-click="goBack()">&lt;&nbsp;Back</a>
     </div>
 
-    <div class="stopAnimating">
+    <!-- <div class="stopAnimating">
       <a ng-click="toggleSettings()">
         <span ng-show="dataService.showSettings">Hide</span>
         &nbsp;Settings
@@ -65,7 +65,7 @@
         <label>Bubbles Alpha</label>
         <input type=range min="0" max="1" step=".1" ng-model="dataService.bubblesAlpha">{{dataService.bubblesAlpha}}
       </div>
-    </div>
+    </div> -->
 
     <div class="footer">
       <a class="link" ng-click="viewPage('/#home')">Home</a> |

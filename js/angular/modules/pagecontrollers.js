@@ -31,6 +31,14 @@
     dataService.orientation = (width > height) ? "landscape" : "portrait";
 
     /*add all the graphics params here*/
+
+    dataService.startAnimation = function() {
+      dataService.animateBubbles = true;
+    }
+
+    dataService.stopAnimation = function() {
+      dataService.animateBubbles = false;
+    }
     
     return dataService;
   });
@@ -94,9 +102,7 @@
       }, 2000);
     });
 
-    $scope.stopAnimation = function() {
-      dataService.animateBubbles = !dataService.animateBubbles;
-    }
+    
 
     $scope.toggleSettings = function() {
       dataService.showSettings = !dataService.showSettings;
@@ -128,6 +134,15 @@
   function CommonCtrl($scope) {
     $scope.$emit('routeLoaded', {});
   };
+
+  function HomeCtrl($scope, $injector, $http, $timeout, dataService) {
+    $injector.invoke(CommonCtrl, this, {$scope: $scope}); 
+    $scope.predicate = '-date_to';
+
+    $scope.init = function() {
+      dataService.startAnimation();
+    }
+  };
   
   
   ///////////////////////  RESUME CONTROLLER //////////////////////////////////////
@@ -139,6 +154,7 @@
 
     $scope.init = function() {
       dataService.jobs = window.jobData;
+      dataService.stopAnimation();
     }
   };
 
@@ -156,6 +172,7 @@
 
     $scope.init = function() {
       dataService.skills = window.skillsData;
+      dataService.stopAnimation();
     }
 
     $scope.getScaleClass = function() {
@@ -195,10 +212,7 @@
 
     $scope.init = function() {
       $scope.getGitRepositoryData();
-    }
-
-    $scope.init = function() {
-      $scope.getGitRepositoryData();
+      dataService.stopAnimation();
     }
 
     $scope.viewItem = function() {

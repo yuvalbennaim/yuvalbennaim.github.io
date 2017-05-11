@@ -38,7 +38,7 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "Flex, ActionScript",
+		"name" : "Angular2, TypeScript",
 		"score" : 7,
 		"color" :"90, 251, 157"
 	}
