@@ -14,7 +14,7 @@ window.skillsData = [
 	}
 	,
 	{
-		"name" : "Angular.JS",
+		"name" : "AngularJS",
 		"score" : 9,
 		"color" :"100, 207, 159"
 	}
@@ -33,18 +33,18 @@ window.skillsData = [
 	,	
 	{
 		"name" : "Java",
-		"score" : 8,
+		"score" : 7,
 		"color" :"67, 97, 129"
 	}
 	,
 	{
 		"name" : "Angular2, TypeScript",
-		"score" : 7,
+		"score" : 8,
 		"color" :"90, 251, 157"
 	}
 	,
 	{
-		"name" : "Git, GitHub",
+		"name" : "Git",
 		"score" : 8,
 		"color" :"209, 170, 240"
 	}
@@ -69,7 +69,7 @@ window.skillsData = [
 	,
 	{
 		"name" : "No SQL, MongoDB",
-		"score" : 7,
+		"score" : 6,
 		"color" :"197, 230, 117"
 	}
 	,
