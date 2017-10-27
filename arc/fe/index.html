@@ -2,8 +2,8 @@
 <html>
   <head>
 		<link rel='stylesheet' href='arc/fe/css/style.css ' />
-    <script src="arc/fe/js/lib/angular.js"></script>
-    <script src="arc/festatic/js/app.js"></script>
+    <script src="/js/lib/angular.js"></script>
+    <script src="static/js/app.js"></script>
     
   </head>
 	
@@ -12,9 +12,9 @@
     <div class="content" ng-class="ds.loading ? 'content-loading' :''">
 		
 		<div ng-class="ds.loading ? 'loading' : 'loading-idle'" ng-click="ds.loading = false">
-      <img src="arc/fe/images/fire.gif" class="loading-anim" ng-show="ds.loading">
+      <img src="/images/fire.gif" class="loading-anim" ng-show="ds.loading">
       <span class="loading-label" ng-show="ds.loading">LOADING</span>
-      <img src="arc/fe/images/button_blue.png" class="loading-cover">
+      <img src="/images/button_blue.png" class="loading-cover">
     </div> 
 
 		<div ng-hide="ds.loading" class="title">
