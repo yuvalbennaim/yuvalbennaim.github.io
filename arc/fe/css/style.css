@@ -1,0 +1,210 @@
+
+
+body {
+    background-color: rgb(63, 63, 63);
+    font-family: sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+button {
+    width: 85px;
+    padding: 8px;
+}
+
+.content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-size: 100% 100%;
+    font-family: sans-serif;
+    margin: 0;
+    transition: all 3s linear;
+}
+.content-loading {
+    background-color: rgb(40, 40, 40);
+}
+.toolbar-loading {
+    right: -100px !important;
+}
+.loading-idle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    border: 2px solid rgb(126, 126, 126); 
+    box-shadow: inset 5px 5px 30px rgb(0, 0, 0);
+    background-color: #bf6e6e;
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    transition: all .3s linear;
+    opacity: 0;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 5px 5px 30px rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    opacity: 1;
+    transition: all .3s linear;
+    z-index: 1000;
+}
+
+.loading-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-family: sans-serif;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: all 1s linear;
+}
+
+.loading-label-idle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-family: sans-serif;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 3s linear;
+}
+
+.loading-cover {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 212px;
+    height: 212px;
+    clip-path: circle(50% at center);
+    opacity: .5;
+    filter: grayscale(100%) hue-rotate(150deg);
+}
+
+.loading-anim {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    clip-path: circle(72px at center);
+    filter: blur(1px) contrast(200%) brightness(120%);
+}
+
+.title {
+    font-family: sans-serif;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #ddd;
+    font-size: 24px;
+}
+
+.list {
+    font-family: sans-serif;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    color: #ddd;
+    font-size: 12px;
+}
+.list-wizard {
+    opacity: .25;
+}
+
+.list-table {
+    width: 400px;
+    border: 1px solid #aaa;
+}
+.list-table TH {
+    text-align: left;
+    padding: 10px;
+    color: #ccc;
+    background-color: #215a74;
+    border: 1px solid #2898cb;
+}
+.list-table TD {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #aaa;
+}
+
+.wizard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    border: 2px solid #d3d3d3;
+    font-size: 14px;
+    font-family: sans-serif;
+    transform: translate(-50%, -50%);
+    background-color: #aaa;
+    box-shadow: 0px 10px 30px #000;
+    transition: all .5s linear;
+    opacity: 1;
+}
+.wizard-minimized {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d3d3d3;
+    font-size: 14px;
+    font-family: sans-serif;
+    background-color: #c5bb63;
+    box-shadow: 0px 10px 30px #000;
+    transition: all .5s linear;
+    opacity: 1;
+}
+
+.wizard-hidden {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    border: 2px solid #d3d3d3;
+    font-size: 14px;
+    font-family: sans-serif;
+    transform: translate(-50%, -50%);
+    background-color: #aaa;
+    box-shadow: 0px 10px 30px #000;
+    transition: all .5s linear;
+    opacity: 0;
+}
+
+.wizard-table {
+    width: 100%;
+    height: 100%
+}
+.wizard-table TH {
+    text-align: left;
+    padding: 10px;
+    color: #eee;
+    background-color: #215a74;
+}
+.wizard-table TD {
+    padding: 5px;
+    vertical-align: bottom;
+}
+
+.tasks {
+    position: absolute;
+    right: 10px;
+    color: #ddd;
+    top: 20px;
+}
