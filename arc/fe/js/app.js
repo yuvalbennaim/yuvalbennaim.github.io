@@ -26,7 +26,7 @@ app.controller('MainController', ['$scope', '$timeout','dataService', function($
 	$scope.init = function() {
 		$timeout(function() {
 			$scope.ds.loading = false;
-		}, 2000); 
+		}, 4000); 
 	}
 
 	$scope.showWizardFunc = function() {
