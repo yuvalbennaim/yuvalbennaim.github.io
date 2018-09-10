@@ -97,7 +97,7 @@ window.jobData = [
 		"date_to": "2017-6-28",
 		"date_to": "Current",
 		"position": "Full Stack Tech Lead, Front-End Architect",
-		"logo": "images/fireeys.jpeg",
+		"logo": "images/fireeye.jpeg",
 		"detail": "Architecting and Developing one of FireEye's Flagship security products using Node.JS, Polymer, Angular and a host of other technologies."
 	},
 	{
