@@ -20,6 +20,17 @@ window.skillsData = [
 	}
 	,
 	{
+		"name" : "Polymer / WebComponents",
+		"score" : 9,
+		"color" :"180, 169, 207"
+	},
+	{
+			"name" : "React/Redux",
+			"score" : 6,
+			"color" :"80, 207, 169"
+	}
+	,
+	{
 		"name" : "Web Dev, HTML5, Canvas",
 		"score" : 9,
 		"color" :"131, 113, 93"
@@ -81,14 +92,22 @@ window.skillsData = [
 ];
 
 window.jobData = [
-  {
-      "company": "Comcast",
-      "date_from": "2015-01-05",
-      "date_to": "Current",
-      "position": "UI Architect",
-      "logo": "images/comcst_logo_peacock.jpg",
-      "detail": "Developing a variety of Applications and Tools using JavaScript, AngularJS, Canvas and NodeJS (MEAN Stack)"
-  },
+	{
+		"company": "FireEye Inc.",
+		"date_to": "2017-6-28",
+		"date_to": "Current",
+		"position": "Full Stack Tech Lead, Front-End Architect",
+		"logo": "images/fireeys.jpeg",
+		"detail": "Architecting and Developing one of FireEye's Flagship security products using Node.JS, Polymer, Angular and a host of other technologies."
+	},
+	{
+		"company": "Comcast",
+		"date_from": "2015-01-05",
+		"date_to": "2017-6-01",
+		"position": "UI Architect",
+		"logo": "images/comcst_logo_peacock.jpg",
+		"detail": "Developing a variety of Applications and Tools using JavaScript, AngularJS, Canvas and NodeJS (MEAN Stack)"
+	},
   {
       "company": "Oppenheimer Gunds Inc.",
       "date_from": "2013-06-01",
