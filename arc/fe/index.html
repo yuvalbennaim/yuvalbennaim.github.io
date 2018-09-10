@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<link rel='stylesheet' href='http://yuvalbennaim.github.io/arc/fe/css/style.css' />
+    <script src="http://yuvalbennaim.github.io/arc/fe/js/lib/angular.js"></script>
+    <script src="http://yuvalbennaim.github.io/arc/fe/js/app.js"></script>
+    
+  </head>
+	
+  <body ng-app="AppModule" ng-controller="MainController" ng-init="init()">
+
+    <div class="content" ng-class="ds.loading ? 'content-loading' :''">
+		
+		<div ng-class="ds.loading ? 'loading' : 'loading-idle'" ng-click="ds.loading = false">
+      <img src="http://yuvalbennaim.github.io/arc/fe/images/fire.gif" class="loading-anim" ng-show="ds.loading">
+      <span class="loading-label" ng-show="ds.loading">LOADING</span>
+      <img src="http://yuvalbennaim.github.io/arc/fe/images/button_blue.png" class="loading-cover">
+    </div> 
+
+		<div ng-hide="ds.loading" class="title">
+      {{ds.name}}
+    </div>
+
+    <div ng-hide="ds.loading" class="list" ng-class="ds.showWizard ? 'list-wizard' : ''">
+      <table class="list-table">
+        <tr>
+          <th>Selected</th>
+          <th>Path</th>
+          <th>Resource</th>
+        </tr>
+        <tr ng-repeat="res in ds.files">
+          <td class=""><input type="checkBox" ng-model="res.selected"></td>
+          <td class="">{{res.path}}</td>
+          <td class="">{{res.name}}</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: right">
+            <button ng-click="showWizardFunc()">Remidiate</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div ng-class="determineWizardClass()">
+      <table ng-show="ds.showWizardInner" class="wizard-table">
+          <tr>
+            <th colspan="3" >Remediation Wizard  <span style="float: right">Step {{ds.wizardStep}} of 4</span></th>
+          </tr>
+
+          <tr ng-show="ds.wizardStep == 1">
+            <td colspan="3">Summary</td>
+          </tr>
+          <tr ng-show="ds.wizardStep == 2">
+            <td colspan="3">Options</td>
+          </tr>
+          <tr ng-show="ds.wizardStep == 3">
+            <td colspan="3">Execution Status</td>
+          </tr>
+
+
+          <tr ng-repeat="res in ds.files" ng-show="ds.wizardStep == 1">
+            <td class=""><input type="checkBox" ng-model="res.selected"></td>
+            <td class="">{{res.path}}</td>
+            <td class="">{{res.name}}</td>
+          </tr>
+
+
+          <tr ng-repeat="res in ds.files" ng-show="ds.wizardStep == 3">
+            <td class="">{{res.status}}</td>
+            <td class="">{{res.path}}</td>
+            <td class="">{{res.name}}</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" style="text-align: right; height: 100%">
+              <button ng-click="hideWizardFunc()">Cancel</button>
+              <button ng-click="nextStep()" ng-hide="ds.wizardStep == 3">Next</button>
+              <button ng-click="minimizeWizard()" ng-show="ds.wizardStep == 3">Close</button>
+            </td>
+          </tr>
+        </table>
+    </div>
+
+    <div ng-show="ds.minimizedWizard" class="tasks">
+        Background Tasks
+      </div>
+
+
+  </body>
+</html>
